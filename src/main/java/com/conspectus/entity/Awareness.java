@@ -1,25 +1,26 @@
-package com.conspectus.entity.base;
+package com.conspectus.entity;
 
-import com.conspectus.entity.Account;
+import com.conspectus.entity.base.IEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
- * Created by luan vu on 1/25/2017.
+ * Created by luan vu on 2/5/2017.
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class BaseEntity {
+@Table(name = "AWARENESS")
+public class Awareness implements IEntity{
+    private Long id;
+    private Set<Awareness> awarenessDetails;
     private Account lastUpdatedBy;
     private boolean deleted;
     private Date createTime;
     private Date updateTime;
 
-    @Column(name = "LAST_UPDATED_BY")
+    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Account getLastUpdatedBy() {
         return lastUpdatedBy;
     }
@@ -52,5 +53,24 @@ public abstract class BaseEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @OneToMany(mappedBy = "awareness")
+    public Set<Awareness> getAwarenessDetails() {
+        return awarenessDetails;
+    }
+
+    public void setAwarenessDetails(Set<Awareness> awarenessDetails) {
+        this.awarenessDetails = awarenessDetails;
     }
 }

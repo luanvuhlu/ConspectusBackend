@@ -1,6 +1,6 @@
 package com.conspectus.dao;
 
-import com.conspectus.entity.University;
+import com.conspectus.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,7 +38,15 @@ public abstract class BaseDao {
     }
 
     private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
+        Configuration configuration = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Account.class)
+                .addAnnotatedClass(City.class)
+                .addAnnotatedClass(Department.class)
+                .addAnnotatedClass(Menu.class)
+                .addAnnotatedClass(Office.class)
+                .addAnnotatedClass(UClass.class)
+                .addAnnotatedClass(University.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
@@ -61,7 +69,7 @@ public abstract class BaseDao {
         this.currentTransaction = currentTransaction;
     }
 
-    protected CriteriaQueryGenerator getCriteriaQueryGenerator() {
-        return new CriteriaQueryGenerator(getCurrentSession(), University.class);
+    protected <T, Z> CriteriaQueryGenerator getCriteriaQueryGenerator(Class<T> val, Class<Z> res) {
+        return new CriteriaQueryGenerator(getCurrentSession(), val, res);
     }
 }

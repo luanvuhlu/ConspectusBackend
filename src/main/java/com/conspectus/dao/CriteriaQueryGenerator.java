@@ -9,21 +9,21 @@ import javax.persistence.criteria.Root;
 /**
  * Created by luan vu on 1/25/2017.
  */
-public class CriteriaQueryGenerator<T> {
+public class CriteriaQueryGenerator<T, Z> {
     private CriteriaBuilder builder;
-    private CriteriaQuery<T> criteria;
+    private CriteriaQuery<Z> criteria;
     private Root<T> root;
-    public CriteriaQueryGenerator(Session session, Class<T> val1){
+    public CriteriaQueryGenerator(Session session, Class<T> val, Class<Z> res){
         builder = session.getCriteriaBuilder();
-        criteria = builder.createQuery(val1);
-        root = criteria.from(val1);
+        criteria = builder.createQuery(res);
+        root = criteria.from(val);
     }
 
     public CriteriaBuilder getBuilder() {
         return builder;
     }
 
-    public CriteriaQuery<T> getCriteria() {
+    public CriteriaQuery<Z> getCriteria() {
         return criteria;
     }
 

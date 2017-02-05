@@ -8,7 +8,6 @@ import javax.persistence.Column;
 public interface NameProperty {
     String getName();
     void setName(String name);
-    @Column(name = "NAME_ABBR")
     String getNameAbbr();
     void setNameAbbr(String nameAbbr);
 }

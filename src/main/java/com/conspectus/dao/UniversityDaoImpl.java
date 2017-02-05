@@ -1,7 +1,7 @@
 package com.conspectus.dao;
 
 import com.conspectus.entity.University;
-import com.conspectus.entity.meta.University_;
+import com.conspectus.entity.University_;
 
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -18,11 +18,12 @@ public class UniversityDaoImpl extends BaseDao implements UniversityDaoInterface
     }
 
     public University findById(Long id) {
-        CriteriaQueryGenerator<University> criteriaQueryGenerator = getCriteriaQueryGenerator();
-        CriteriaQuery<University> criteria = criteriaQueryGenerator.getCriteria()
-                .select(criteriaQueryGenerator.getRoot())
-                .where(criteriaQueryGenerator.getBuilder()
-                .equal(criteriaQueryGenerator.getRoot().get(University_.id), id));
+        CriteriaQueryGenerator<University, University> generator = getCriteriaQueryGenerator(University.class, University.class);
+        System.out.print(University_.id);
+        CriteriaQuery<University> criteria = generator.getCriteria()
+                .select(generator.getRoot())
+                .where(generator.getBuilder()
+                .equal(generator.getRoot().get(University_.id), id));
         return getCurrentSession().createQuery(criteria).uniqueResult();
     }
 

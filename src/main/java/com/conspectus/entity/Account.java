@@ -1,9 +1,6 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.AddressProperty;
-import com.conspectus.entity.base.BaseEntity;
-import com.conspectus.entity.base.City;
-import com.conspectus.entity.base.HiddenProperty;
+import com.conspectus.entity.base.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,8 +10,8 @@ import java.util.Date;
  * Tài khoản
  */
 @Entity
-@Table
-public class Account extends BaseEntity implements AddressProperty, HiddenProperty {
+@Table(name = "ACCOUNT")
+public class Account implements AddressProperty, HiddenProperty, IEntity {
     private Long id;
     private String username;
     private String email;
@@ -28,6 +25,11 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
     private AccountLoginType loginType;
     private boolean blocked;
     private boolean hidden;
+    private Account lastUpdatedBy;
+    private boolean deleted;
+    private Date createTime;
+    private Date updateTime;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -73,6 +75,7 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
         this.lastName = lastName;
     }
 
+    @Column(name = "ADDRESS_1")
     public String getAddress1() {
         return address1;
     }
@@ -81,6 +84,7 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
         this.address1 = address1;
     }
 
+    @Column(name = "ADDRESS_2")
     public String getAddress2() {
         return address2;
     }
@@ -89,6 +93,7 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
         this.address2 = address2;
     }
 
+    @Column(name = "ADDRESS_3")
     public String getAddress3() {
         return address3;
     }
@@ -97,6 +102,8 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
         this.address3 = address3;
     }
 
+    @JoinColumn(name = "CITY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     public City getCity() {
         return city;
     }
@@ -137,5 +144,41 @@ public class Account extends BaseEntity implements AddressProperty, HiddenProper
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+
+    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Account getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(Account lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    @Column(name = "CREATE_TIME")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Column(name = "UPDATE_TIME")
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

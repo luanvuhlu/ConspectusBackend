@@ -11,8 +11,8 @@ import java.util.Set;
  * Trường đại học
  */
 @Entity
-@Table
-public class University extends BaseEntity implements NameProperty, AddressProperty, HiddenProperty {
+@Table(name = "UNIVERSITY")
+public class University implements NameProperty, AddressProperty, HiddenProperty, IEntity {
     private Long id;
     private String name;
     private String nameAbbr;
@@ -22,6 +22,10 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
     private boolean hidden;
     private City city;
     private Date founding;
+    private Account lastUpdatedBy;
+    private boolean deleted;
+    private Date createTime;
+    private Date updateTime;
     private Set<UClass> uClasses;
     private Set<Office> offices;
     private Set<Department> departments;
@@ -44,6 +48,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.name = name;
     }
 
+    @Column(name = "NAME_ABBR")
     public String getNameAbbr() {
         return nameAbbr;
     }
@@ -52,6 +57,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.nameAbbr = nameAbbr;
     }
 
+    @Column(name = "ADDRESS_1")
     public String getAddress1() {
         return address1;
     }
@@ -60,6 +66,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.address1 = address1;
     }
 
+    @Column(name = "ADDRESS_2")
     public String getAddress2() {
         return address2;
     }
@@ -68,6 +75,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.address2 = address2;
     }
 
+    @Column(name = "ADDRESS_3")
     public String getAddress3() {
         return address3;
     }
@@ -76,6 +84,8 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.address3 = address3;
     }
 
+    @JoinColumn(name = "CITY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     public City getCity() {
         return city;
     }
@@ -100,6 +110,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.hidden = hidden;
     }
 
+    @OneToMany(mappedBy = "university")
     public Set<UClass> getuClasses() {
         return uClasses;
     }
@@ -108,6 +119,7 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
         this.uClasses = uClasses;
     }
 
+    @OneToMany(mappedBy = "university")
     public Set<Office> getOffices() {
         return offices;
     }
@@ -147,5 +159,41 @@ public class University extends BaseEntity implements NameProperty, AddressPrope
 
     public void removeDepartment(Department department) {
         getDepartments().remove(department);
+    }
+
+    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Account getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(Account lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    @Column(name = "CREATE_TIME")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Column(name = "UPDATE_TIME")
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

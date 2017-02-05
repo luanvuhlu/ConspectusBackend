@@ -8,8 +8,6 @@ import java.util.Set;
 /**
  * Created by luan vu on 2/1/2017.
  */
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AbstractMenu implements IMenu{
     private String name;
     private String url;

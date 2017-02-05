@@ -1,25 +1,19 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.HiddenProperty;
 import com.conspectus.entity.base.IEntity;
-import com.conspectus.entity.base.NameProperty;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
- * Created by luan vu on 1/30/2017.
- * Bộ môn
+ * Created by luan vu on 2/5/2017.
  */
 @Entity
-@Table(name = "DEPARTMENT")
-public class Department implements NameProperty, HiddenProperty, IEntity {
+@Table(name = "EXERCISE")
+public class Exercise implements IEntity {
     private Long id;
-    private University university;
-    private String name;
-    private String nameAbbr;
-    private String address;
-    private boolean hidden;
+    private Conspectus conspectus;
     private Account lastUpdatedBy;
     private boolean deleted;
     private Date createTime;
@@ -35,47 +29,14 @@ public class Department implements NameProperty, HiddenProperty, IEntity {
         this.id = id;
     }
 
-    @JoinColumn(name = "UNIVERSITY_ID", nullable = false)
+    @JoinColumn(name = "CONSPECTUS_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    public University getUniversity() {
-        return university;
+    public Conspectus getConspectus() {
+        return conspectus;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "NAME_ABBR")
-    public String getNameAbbr() {
-        return nameAbbr;
-    }
-
-    public void setNameAbbr(String nameAbbr) {
-        this.nameAbbr = nameAbbr;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
+    public void setConspectus(Conspectus conspectus) {
+        this.conspectus = conspectus;
     }
 
     @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
