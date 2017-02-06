@@ -67,7 +67,7 @@ public class Faculty implements IEntity {
         this.createTime = createTime;
     }
 
-    @Column(name = "UPDATE_TIME")
+    @Column(name = "CREATE_TIME")
     public Date getUpdateTime() {
         return updateTime;
     }

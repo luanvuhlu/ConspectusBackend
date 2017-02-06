@@ -8,7 +8,7 @@ import com.conspectus.entity.University;
  * Created by luan vu on 1/25/2017.
  */
 public class UniversityService extends BaseService{
-    private static UniversityDaoInterface dao;
+    private UniversityDaoInterface dao;
     public UniversityService(){
         dao = new UniversityDaoImpl();
     }

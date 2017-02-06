@@ -22,14 +22,5 @@
         </property>
         <property name="show_sql">true</property>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-        <!-- List of mapping classes -->
-        <!--<mapping class="com.conspectus.entity.Menu"/>-->
-        <mapping class="com.conspectus.entity.Account"/>
-        <mapping class="com.conspectus.entity.University"/>
-        <mapping class="com.conspectus.entity.UClass"/>
-        <mapping class="com.conspectus.entity.Department"/>
-        <mapping class="com.conspectus.entity.Office"/>
-        <mapping class="com.conspectus.entity.City"/>
-
     </session-factory>
 </hibernate-configuration>

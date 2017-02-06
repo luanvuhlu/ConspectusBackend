@@ -14,6 +14,7 @@ public class City {
     private Integer id;
     private String name;
     private Set<University> universities;
+    private Set<Account> accounts;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
@@ -39,5 +40,18 @@ public class City {
 
     public void setUniversities(Set<University> universities) {
         this.universities = universities;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @OneToMany(mappedBy = "city")
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 }

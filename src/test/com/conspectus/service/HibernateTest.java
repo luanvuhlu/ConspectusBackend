@@ -12,13 +12,8 @@ public class HibernateTest {
     public void init(){
         service = new UniversityService();
     }
-//    @Test
+    @Test
     public void testSetup() throws Exception {
         service.findById(0l);
-    }
-    public static void main(String[] args) throws Exception {
-        HibernateTest test = new HibernateTest();
-        test.init();
-        test.testSetup();
     }
 }
