@@ -12,4 +12,5 @@ public interface IMenu {
     int getOrder();
     IMenu getParent();
     Set<IMenu> getChildren();
+    void addChild(IMenu menu);
 }
