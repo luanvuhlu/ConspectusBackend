@@ -4,7 +4,6 @@ import com.conspectus.entity.base.IEntity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by luan vu on 2/5/2017.
@@ -67,7 +66,7 @@ public class Faculty implements IEntity {
         this.createTime = createTime;
     }
 
-    @Column(name = "CREATE_TIME")
+    @Column(name = "UPDATE_TIME")
     public Date getUpdateTime() {
         return updateTime;
     }

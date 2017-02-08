@@ -1,7 +1,5 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.IMenu;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,15 +9,14 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "MENU")
-public class Menu implements IMenu {
+public class Menu{
     private Long id;
     private String name;
     private String url;
     private int order;
-    private int level;
-    private IMenu parent;
+    private Menu parent;
     private String icon;
-    private Set<IMenu> children;
+    private Set<Menu> children;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -42,6 +39,7 @@ public class Menu implements IMenu {
         this.url = url;
     }
 
+    @Column(name = "MENU_ORDER")
     public int getOrder() {
         return order;
     }
@@ -52,11 +50,11 @@ public class Menu implements IMenu {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ROOT_ID", nullable = true)
-    public IMenu getParent() {
+    public Menu getParent() {
         return parent;
     }
 
-    public void setParent(IMenu parent) {
+    public void setParent(Menu parent) {
         this.parent = parent;
     }
 
@@ -69,18 +67,18 @@ public class Menu implements IMenu {
     }
 
     @OneToMany(mappedBy = "parent")
-    public Set<IMenu> getChildren() {
+    public Set<Menu> getChildren() {
         return children;
     }
 
-    public void addChild(IMenu menu) {
+    public void addChild(Menu menu) {
         if(getChildren()==null){
-            setChildren(new HashSet<IMenu>());
+            setChildren(new HashSet<Menu>());
         }
         getChildren().add(menu);
     }
 
-    public void setChildren(Set<IMenu> children) {
+    public void setChildren(Set<Menu> children) {
         this.children = children;
     }
 

@@ -2,9 +2,11 @@ package com.conspectus.service;
 
 import com.conspectus.dao.MenuDaoImpl;
 import com.conspectus.dao.MenuDaoInterface;
-import com.conspectus.entity.base.IMenu;
+import com.conspectus.entity.Menu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by luan vu on 1/25/2017.
@@ -16,7 +18,7 @@ public class MenuService extends BaseService {
         dao = new MenuDaoImpl();
     }
 
-    public void persist(IMenu entity) throws Exception {
+    public void persist(Menu entity) throws Exception {
         try {
             dao.openCurrentSessionwithTransaction();
             dao.add(entity);
@@ -27,7 +29,7 @@ public class MenuService extends BaseService {
         }
     }
 
-    public void update(IMenu entity) throws Exception {
+    public void update(Menu entity) throws Exception {
         try {
             dao.openCurrentSessionwithTransaction();
             dao.update(entity);
@@ -38,7 +40,7 @@ public class MenuService extends BaseService {
         }
     }
 
-    public IMenu findById(Long id) throws Exception {
+    public Menu findById(Long id) throws Exception {
         try {
             dao.openCurrentSession();
             return dao.findById(id);
@@ -49,7 +51,7 @@ public class MenuService extends BaseService {
         }
     }
 
-    public void delete(IMenu entity) throws Exception {
+    public void delete(Menu entity) throws Exception {
         try {
             dao.openCurrentSessionwithTransaction();
             dao.delete(entity);
@@ -60,7 +62,7 @@ public class MenuService extends BaseService {
         }
     }
 
-    public List<IMenu> listAll() throws Exception {
+    public List<Menu> listAll() throws Exception {
         try {
             dao.openCurrentSession();
             return dao.listAll();
@@ -71,21 +73,21 @@ public class MenuService extends BaseService {
         }
     }
 
-    public List<IMenu> listMenuOrdered() throws Exception {
+    public List<Menu> listMenuOrdered() throws Exception {
         try {
-            List<IMenu> allMenus = listAll();
+            List<Menu> allMenus = listAll();
             if (allMenus == null || allMenus.size() == 0) {
                 return Collections.EMPTY_LIST;
             }
-            List<IMenu> menuRoots = new ArrayList<IMenu>();
+            List<Menu> menuRoots = new ArrayList<Menu>();
 
-            for (IMenu menu : allMenus) {
+            for (Menu menu : allMenus) {
                 if (menu.getParent() != null) {
                     continue;
                 }
                 menuRoots.add(menu);
             }
-            for (IMenu menu : allMenus) {
+            for (Menu menu : allMenus) {
                 addMenuChild(menu, menuRoots);
             }
             return menuRoots;
@@ -94,9 +96,12 @@ public class MenuService extends BaseService {
         }
     }
 
-    private void addMenuChild(IMenu menu, List<IMenu> menuRoots) {
-        for (IMenu root : menuRoots) {
-            if(!menu.getParent().equals(root)) {
+    private void addMenuChild(Menu menu, List<Menu> menuRoots) {
+        for (Menu root : menuRoots) {
+            if(menu.getParent()==null){
+                continue;
+            }
+            if(!root.equals(menu.getParent())) {
                 continue;
             }
             root.addChild(menu);

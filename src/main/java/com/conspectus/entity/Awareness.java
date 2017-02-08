@@ -13,7 +13,8 @@ import java.util.Set;
 @Table(name = "AWARENESS")
 public class Awareness implements IEntity{
     private Long id;
-    private Set<Awareness> awarenessDetails;
+    private Set<AwarenessDetail> awarenessDetails;
+    private Conspectus conspectus;
     private Account lastUpdatedBy;
     private boolean deleted;
     private Date createTime;
@@ -66,11 +67,21 @@ public class Awareness implements IEntity{
     }
 
     @OneToMany(mappedBy = "awareness")
-    public Set<Awareness> getAwarenessDetails() {
+    public Set<AwarenessDetail> getAwarenessDetails() {
         return awarenessDetails;
     }
 
-    public void setAwarenessDetails(Set<Awareness> awarenessDetails) {
+    public void setAwarenessDetails(Set<AwarenessDetail> awarenessDetails) {
         this.awarenessDetails = awarenessDetails;
+    }
+
+    @JoinColumn(name = "CONSPECTUS_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Conspectus getConspectus() {
+        return conspectus;
+    }
+
+    public void setConspectus(Conspectus conspectus) {
+        this.conspectus = conspectus;
     }
 }

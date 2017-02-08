@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "AWARENESS_DETAIL")
-public class Awareness_Detail implements IEntity{
+public class AwarenessDetail implements IEntity{
     private Long id;
     private Awareness awareness;
     private Account lastUpdatedBy;
@@ -28,7 +28,7 @@ public class Awareness_Detail implements IEntity{
         this.id = id;
     }
 
-    @JoinColumn(name = "awareness", nullable = false)
+    @JoinColumn(name = "AWARENESS_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     public Awareness getAwareness() {
         return awareness;

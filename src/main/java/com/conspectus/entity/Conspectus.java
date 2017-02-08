@@ -71,7 +71,7 @@ public class Conspectus implements IEntity {
         this.exercises = exercises;
     }
 
-    @JoinColumn(name = "SUBJECT_STUDENT_SCHEDULE", nullable = false)
+    @JoinColumn(name = "SUBJECT_STUDENT_SCHEDULE_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     public SubjectStudentSchedule getSubjectStudentSchedule() {
         return subjectStudentSchedule;

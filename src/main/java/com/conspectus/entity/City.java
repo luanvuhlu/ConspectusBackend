@@ -1,7 +1,5 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.University;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,11 +15,11 @@ public class City {
     private Set<Account> accounts;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,10 +38,6 @@ public class City {
 
     public void setUniversities(Set<University> universities) {
         this.universities = universities;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @OneToMany(mappedBy = "city")

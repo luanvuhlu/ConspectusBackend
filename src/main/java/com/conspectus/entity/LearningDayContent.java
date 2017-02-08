@@ -65,7 +65,7 @@ public class LearningDayContent implements IEntity{
         this.createTime = createTime;
     }
 
-    @Column(name = "CREATE_TIME")
+    @Column(name = "UPDATE_TIME")
     public Date getUpdateTime() {
         return updateTime;
     }

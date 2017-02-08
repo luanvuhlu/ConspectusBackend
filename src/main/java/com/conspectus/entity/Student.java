@@ -22,6 +22,8 @@ public class Student implements IEntity {
     private Date createTime;
     private Date updateTime;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -30,6 +32,8 @@ public class Student implements IEntity {
         this.id = id;
     }
 
+    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Account getLastUpdatedBy() {
         return lastUpdatedBy;
     }
@@ -46,6 +50,7 @@ public class Student implements IEntity {
         this.deleted = deleted;
     }
 
+    @Column(name = "CREATE_TIME")
     public Date getCreateTime() {
         return createTime;
     }
@@ -54,6 +59,7 @@ public class Student implements IEntity {
         this.createTime = createTime;
     }
 
+    @Column(name = "UPDATE_TIME")
     public Date getUpdateTime() {
         return updateTime;
     }

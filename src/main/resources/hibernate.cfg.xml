@@ -7,11 +7,11 @@
             org.hibernate.dialect.MySQLDialect
         </property>
         <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            com.mysql.cj.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
             <![CDATA[
-            jdbc:mysql://127.0.0.1:3306/conspectus?autoReconnect=true&useSSL=false
+            jdbc:mysql://127.0.0.1:3306/conspectus?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             ]]>
         </property>
         <property name="hibernate.connection.username">
