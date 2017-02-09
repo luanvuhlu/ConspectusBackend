@@ -1,7 +1,9 @@
 package com.conspectus.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -66,15 +68,13 @@ public class Menu{
         this.icon = icon;
     }
 
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     public Set<Menu> getChildren() {
         return children;
     }
 
     public void addChild(Menu menu) {
-        if(getChildren()==null){
-            setChildren(new HashSet<Menu>());
-        }
         getChildren().add(menu);
     }
 

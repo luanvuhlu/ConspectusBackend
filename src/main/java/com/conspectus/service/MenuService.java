@@ -6,6 +6,7 @@ import com.conspectus.entity.Menu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -82,6 +83,9 @@ public class MenuService extends BaseService {
             List<Menu> menuRoots = new ArrayList<Menu>();
 
             for (Menu menu : allMenus) {
+                if(menu.getChildren()==null){
+                    menu.setChildren(new HashSet<Menu>());
+                }
                 if (menu.getParent() != null) {
                     continue;
                 }

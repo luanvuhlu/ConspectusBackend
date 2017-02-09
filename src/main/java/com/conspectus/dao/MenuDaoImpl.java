@@ -23,7 +23,7 @@ public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
         CriteriaQuery<Menu> criteria = generator.getCriteria()
                 .select(generator.getRoot())
                 .where(generator.getBuilder()
-                .equal(generator.getRoot().get(Menu_.id), id));
+                    .equal(generator.getRoot().get(Menu_.id), id));
         return getCurrentSession().createQuery(criteria).uniqueResult();
     }
 
@@ -35,6 +35,8 @@ public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
         CriteriaQueryGenerator<Menu, Menu> generator = getCriteriaQueryGenerator(Menu.class, Menu.class);
         CriteriaQuery<Menu> criteria = generator.getCriteria()
                 .select(generator.getRoot())
+                .where(generator.getBuilder()
+                        .isNull(generator.getRoot().get(Menu_.parent)))
                 .orderBy(generator.getBuilder().asc(generator.getRoot().get(Menu_.order)));
         return getCurrentSession().createQuery(criteria).list();
     }
