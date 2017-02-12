@@ -19,7 +19,7 @@ public class MenuService extends BaseService {
         dao = new MenuDaoImpl();
     }
 
-    public void persist(Menu entity) throws Exception {
+    public void add(Menu entity) throws Exception {
         try {
             dao.openCurrentSessionwithTransaction();
             dao.add(entity);
@@ -55,6 +55,7 @@ public class MenuService extends BaseService {
     public void delete(Menu entity) throws Exception {
         try {
             dao.openCurrentSessionwithTransaction();
+            dao.decrOrderMenu(entity.getParentOrder(), entity.getOrder());
             dao.delete(entity);
         } catch (Exception e) {
             throw e;
@@ -110,6 +111,30 @@ public class MenuService extends BaseService {
             }
             root.addChild(menu);
             return;
+        }
+    }
+
+    public void addBefore(Menu entity) throws Exception {
+        try {
+            dao.openCurrentSessionwithTransaction();
+            dao.incrOrderMenu(entity.getParentOrder(), entity.getOrder());
+            dao.add(entity);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            dao.closeCurrentSessionwithTransaction();
+        }
+    }
+
+    public void addAfter(Menu entity) throws Exception {
+        try {
+            dao.openCurrentSessionwithTransaction();
+            dao.incrOrderMenu(entity.getParentOrder(), entity.getOrder());
+            dao.add(entity);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            dao.closeCurrentSessionwithTransaction();
         }
     }
 }

@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "MENU")
-public class Menu{
+public class Menu implements Serializable{
     private Long id;
     private String name;
     private String url;
@@ -19,8 +20,21 @@ public class Menu{
     private Menu parent;
     private String icon;
     private Set<Menu> children;
+
+    public Menu() {
+    }
+
+    public Menu(Menu other) {
+        this.id = other.getId();
+        this.icon = other.getIcon();
+        this.parent = other.getParent();
+        this.name = other.getName();
+        this.url = other.getUrl();
+        this.order = other.getOrder();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -84,5 +98,9 @@ public class Menu{
 
     public void setId(Long id) {
         this.id = id;
+    }
+    @Transient
+    public Integer getParentOrder(){
+        return getParent()==null ? null : getParent().getOrder();
     }
 }

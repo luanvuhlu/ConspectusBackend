@@ -101,4 +101,7 @@ public abstract class BaseDao {
     protected <T, Z> CriteriaQueryGenerator getCriteriaQueryGenerator(Class<T> val, Class<Z> res) {
         return new CriteriaQueryGenerator(getCurrentSession(), val, res);
     }
+    protected <T> CriteriaUpdateGenerator getCriteriaUpdateGenerator(Class<T> val) {
+        return new CriteriaUpdateGenerator(getCurrentSession(), val);
+    }
 }

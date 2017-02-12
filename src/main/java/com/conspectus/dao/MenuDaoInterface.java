@@ -13,4 +13,6 @@ public interface MenuDaoInterface extends BaseDaoInterface {
     public Menu findById(Long id);
     public void delete(Menu entity);
     public List<Menu> listAll();
+    void incrOrderMenu(Integer parentId, int order);
+    void decrOrderMenu(Integer parentId, int order);
 }

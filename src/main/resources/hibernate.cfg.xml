@@ -9,6 +9,7 @@
         <property name="hibernate.connection.driver_class">
             com.mysql.cj.jdbc.Driver
         </property>
+        <property name="hibernate.id.new_generator_mappings">false</property>
         <property name="hibernate.connection.url">
             <![CDATA[
             jdbc:mysql://127.0.0.1:3306/conspectus?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
