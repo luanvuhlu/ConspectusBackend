@@ -1,6 +1,7 @@
 package com.conspectus.dao;
 
 import com.conspectus.entity.Menu;
+import com.conspectus.entity.MenuIcon;
 import com.conspectus.entity.Menu_;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -60,6 +61,12 @@ public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
 
     public void decrOrderMenu(Integer parentId, int order) {
         reOrderMenu(parentId, order, -1);
+    }
+
+    public List<MenuIcon> getListMenuIcons() {
+        CriteriaQueryGenerator<MenuIcon, MenuIcon> generator = getCriteriaQueryGenerator(MenuIcon.class, MenuIcon.class);
+        generator.getCriteria().select(generator.getRoot());
+        return getCurrentSession().createQuery(generator.getCriteria()).list();
     }
 
 }

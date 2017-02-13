@@ -16,7 +16,7 @@ public abstract class BaseDao {
         return currentSession;
     }
 
-    public Session openCurrentSessionwithTransaction() {
+    public Session openCurrentSessionWithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
@@ -29,7 +29,7 @@ public abstract class BaseDao {
         currentSession.close();
     }
 
-    public void closeCurrentSessionwithTransaction() {
+    public void closeCurrentSessionWithTransaction() {
         if (currentSession == null || !currentSession.isOpen()) {
             return;
         }
@@ -40,6 +40,7 @@ public abstract class BaseDao {
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration()
                 .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(MenuIcon.class)
                 .addAnnotatedClass(Account.class)
                 .addAnnotatedClass(AccountLoginType.class)
                 .addAnnotatedClass(Awareness.class)

@@ -15,23 +15,23 @@ public class UniversityService extends BaseService{
 
     public void persist(University entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.add(entity);
         }catch (Exception e){
             throw e;
         }finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
     public void update(University entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.update(entity);
         }catch (Exception e){
             throw e;
         }finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
@@ -49,12 +49,12 @@ public class UniversityService extends BaseService{
 
     public void delete(University entity) throws Exception {
         try{
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.delete(entity);
         }catch (Exception e){
             throw e;
         }finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 

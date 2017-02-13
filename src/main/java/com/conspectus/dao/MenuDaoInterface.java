@@ -1,6 +1,7 @@
 package com.conspectus.dao;
 
 import com.conspectus.entity.Menu;
+import com.conspectus.entity.MenuIcon;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface MenuDaoInterface extends BaseDaoInterface {
     public List<Menu> listAll();
     void incrOrderMenu(Integer parentId, int order);
     void decrOrderMenu(Integer parentId, int order);
+    List<MenuIcon> getListMenuIcons();
 }

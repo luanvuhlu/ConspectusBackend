@@ -8,9 +8,9 @@ import org.hibernate.Transaction;
  */
 public interface BaseDaoInterface {
     public Session openCurrentSession();
-    public Session openCurrentSessionwithTransaction();
+    public Session openCurrentSessionWithTransaction();
     public  void closeCurrentSession();
-    public void closeCurrentSessionwithTransaction();
+    public void closeCurrentSessionWithTransaction();
     public Session getCurrentSession();
     public void setCurrentSession(Session currentSession);
     public Transaction getCurrentTransaction();

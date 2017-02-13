@@ -3,6 +3,7 @@ package com.conspectus.service;
 import com.conspectus.dao.MenuDaoImpl;
 import com.conspectus.dao.MenuDaoInterface;
 import com.conspectus.entity.Menu;
+import com.conspectus.entity.MenuIcon;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,23 +22,23 @@ public class MenuService extends BaseService {
 
     public void add(Menu entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.add(entity);
         } catch (Exception e) {
             throw e;
         } finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
     public void update(Menu entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.update(entity);
         } catch (Exception e) {
             throw e;
         } finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
@@ -54,13 +55,13 @@ public class MenuService extends BaseService {
 
     public void delete(Menu entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.decrOrderMenu(entity.getParentOrder(), entity.getOrder());
             dao.delete(entity);
         } catch (Exception e) {
             throw e;
         } finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
@@ -74,7 +75,7 @@ public class MenuService extends BaseService {
             dao.closeCurrentSession();
         }
     }
-
+    // TODO don't want load eager
     public List<Menu> listMenuOrdered() throws Exception {
         try {
             List<Menu> allMenus = listAll();
@@ -116,25 +117,35 @@ public class MenuService extends BaseService {
 
     public void addBefore(Menu entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.incrOrderMenu(entity.getParentOrder(), entity.getOrder());
             dao.add(entity);
         } catch (Exception e) {
             throw e;
         } finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 
     public void addAfter(Menu entity) throws Exception {
         try {
-            dao.openCurrentSessionwithTransaction();
+            dao.openCurrentSessionWithTransaction();
             dao.incrOrderMenu(entity.getParentOrder(), entity.getOrder());
             dao.add(entity);
         } catch (Exception e) {
             throw e;
         } finally {
-            dao.closeCurrentSessionwithTransaction();
+            dao.closeCurrentSessionWithTransaction();
+        }
+    }
+    public List<MenuIcon> getListMenuIcons() throws Exception {
+        try {
+            dao.openCurrentSession();
+            return dao.getListMenuIcons();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            dao.closeCurrentSession();
         }
     }
 }
