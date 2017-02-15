@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class MenuIcon implements Serializable{
     private int id;
     private String value;
+    private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +29,13 @@ public class MenuIcon implements Serializable{
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

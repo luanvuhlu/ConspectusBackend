@@ -1,5 +1,6 @@
 package com.conspectus.dao;
 
+import com.conspectus.base.BaseDaoInterface;
 import com.conspectus.entity.Menu;
 import com.conspectus.entity.MenuIcon;
 

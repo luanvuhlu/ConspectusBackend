@@ -33,6 +33,11 @@ public class Menu implements Serializable{
         this.order = other.getOrder();
     }
 
+    public Menu(int order) {
+        this.order = order;
+        this.icon = icon;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -64,7 +69,7 @@ public class Menu implements Serializable{
         this.order = order;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOT_ID", nullable = true)
     public Menu getParent() {
         return parent;
@@ -82,7 +87,8 @@ public class Menu implements Serializable{
         this.icon = icon;
     }
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+
     @Fetch(FetchMode.JOIN)
     public Set<Menu> getChildren() {
         return children;

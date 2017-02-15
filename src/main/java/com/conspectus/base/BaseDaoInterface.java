@@ -1,4 +1,4 @@
-package com.conspectus.dao;
+package com.conspectus.base;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

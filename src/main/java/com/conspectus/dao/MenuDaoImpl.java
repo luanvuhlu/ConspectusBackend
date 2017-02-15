@@ -1,11 +1,10 @@
 package com.conspectus.dao;
 
+import com.conspectus.base.BaseDao;
 import com.conspectus.entity.Menu;
 import com.conspectus.entity.MenuIcon;
 import com.conspectus.entity.Menu_;
 
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
     public List<Menu> listAll() {
         CriteriaQueryGenerator<Menu, Menu> generator = getCriteriaQueryGenerator(Menu.class, Menu.class);
         generator.getCriteria().select(generator.getRoot());
-        generator.getCriteria().where(generator.getBuilder().isNull(generator.getRoot().get(Menu_.parent)));
+//        generator.getCriteria().where(generator.getBuilder().isNull(generator.getRoot().get(Menu_.parent)));
         generator.getCriteria().orderBy(generator.getBuilder().asc(generator.getRoot().get(Menu_.order)));
         return getCurrentSession().createQuery(generator.getCriteria()).list();
     }

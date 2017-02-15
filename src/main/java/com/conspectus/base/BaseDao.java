@@ -1,5 +1,7 @@
-package com.conspectus.dao;
+package com.conspectus.base;
 
+import com.conspectus.dao.CriteriaQueryGenerator;
+import com.conspectus.dao.CriteriaUpdateGenerator;
 import com.conspectus.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,13 +14,19 @@ public abstract class BaseDao {
     private Transaction currentTransaction;
 
     public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
+        if (currentSession == null || !currentSession.isOpen()) {
+            currentSession = getSessionFactory().openSession();
+        }
         return currentSession;
     }
 
     public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
+        if (currentSession == null || !currentSession.isOpen()) {
+            currentSession = getSessionFactory().openSession();
+        }
+        if(currentTransaction==null) {
+            currentTransaction = currentSession.beginTransaction();
+        }
         return currentSession;
     }
 

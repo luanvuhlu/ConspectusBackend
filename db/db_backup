@@ -1,0 +1,1021 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+--
+-- Host: localhost    Database: conspectus
+-- ------------------------------------------------------
+-- Server version	5.7.17-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ACCOUNT`
+--
+
+DROP TABLE IF EXISTS `ACCOUNT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ACCOUNT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(255) DEFAULT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `FIRST_NAME` varchar(255) DEFAULT NULL,
+  `LAST_NAME` varchar(255) DEFAULT NULL,
+  `ADDRESS_1` varchar(255) DEFAULT NULL,
+  `ADDRESS_2` varchar(255) DEFAULT NULL,
+  `ADDRESS_3` varchar(255) DEFAULT NULL,
+  `CITY` int(11) DEFAULT NULL,
+  `DATE_OF_BIRTH` datetime DEFAULT NULL,
+  `LOGIN_TYPE` smallint(2) DEFAULT NULL,
+  `blocked` tinyint(1) DEFAULT NULL,
+  `hidden` tinyint(1) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ACCOUNT`
+--
+
+LOCK TABLES `ACCOUNT` WRITE;
+/*!40000 ALTER TABLE `ACCOUNT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ACCOUNT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AWARENESS`
+--
+
+DROP TABLE IF EXISTS `AWARENESS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `AWARENESS` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  `CONSPECTUS_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AWARENESS`
+--
+
+LOCK TABLES `AWARENESS` WRITE;
+/*!40000 ALTER TABLE `AWARENESS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AWARENESS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AWARENESS_DETAIL`
+--
+
+DROP TABLE IF EXISTS `AWARENESS_DETAIL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `AWARENESS_DETAIL` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `AWARENESS_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AWARENESS_DETAIL`
+--
+
+LOCK TABLES `AWARENESS_DETAIL` WRITE;
+/*!40000 ALTER TABLE `AWARENESS_DETAIL` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AWARENESS_DETAIL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CITY`
+--
+
+DROP TABLE IF EXISTS `CITY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CITY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CITY`
+--
+
+LOCK TABLES `CITY` WRITE;
+/*!40000 ALTER TABLE `CITY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CITY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CONSPECTUS`
+--
+
+DROP TABLE IF EXISTS `CONSPECTUS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONSPECTUS` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SUBJECT_STUDENT_SCHEDULE_ID` int(11) DEFAULT NULL,
+  `SUBJECT_ID` int(11) DEFAULT NULL,
+  `LEARNING_SESSION_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CONSPECTUS`
+--
+
+LOCK TABLES `CONSPECTUS` WRITE;
+/*!40000 ALTER TABLE `CONSPECTUS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CONSPECTUS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CONSPECTUS_LEARNING_WEEK`
+--
+
+DROP TABLE IF EXISTS `CONSPECTUS_LEARNING_WEEK`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONSPECTUS_LEARNING_WEEK` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LEARNING_WEEK_ID` int(11) DEFAULT NULL,
+  `CONSPECTUS_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CONSPECTUS_LEARNING_WEEK`
+--
+
+LOCK TABLES `CONSPECTUS_LEARNING_WEEK` WRITE;
+/*!40000 ALTER TABLE `CONSPECTUS_LEARNING_WEEK` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CONSPECTUS_LEARNING_WEEK` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `COURSE`
+--
+
+DROP TABLE IF EXISTS `COURSE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COURSE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `University_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COURSE`
+--
+
+LOCK TABLES `COURSE` WRITE;
+/*!40000 ALTER TABLE `COURSE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `COURSE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `DEPARTMENT`
+--
+
+DROP TABLE IF EXISTS `DEPARTMENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DEPARTMENT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `University_ID` int(11) DEFAULT NULL,
+  `NAME` varchar(255) DEFAULT NULL,
+  `NAME_ABBR` varchar(255) DEFAULT NULL,
+  `HIDDEN` tinyint(1) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `DEPARTMENT`
+--
+
+LOCK TABLES `DEPARTMENT` WRITE;
+/*!40000 ALTER TABLE `DEPARTMENT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `DEPARTMENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `EXERCISE`
+--
+
+DROP TABLE IF EXISTS `EXERCISE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `EXERCISE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CONSPECTUS_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `EXERCISE`
+--
+
+LOCK TABLES `EXERCISE` WRITE;
+/*!40000 ALTER TABLE `EXERCISE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `EXERCISE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `FACULTY`
+--
+
+DROP TABLE IF EXISTS `FACULTY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FACULTY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `FACULTY`
+--
+
+LOCK TABLES `FACULTY` WRITE;
+/*!40000 ALTER TABLE `FACULTY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `FACULTY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `HOLIDAY`
+--
+
+DROP TABLE IF EXISTS `HOLIDAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `HOLIDAY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `HOLIDAY`
+--
+
+LOCK TABLES `HOLIDAY` WRITE;
+/*!40000 ALTER TABLE `HOLIDAY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `HOLIDAY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_DAY`
+--
+
+DROP TABLE IF EXISTS `LEARNING_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_DAY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CONSPECTUS_LEARNING_WEEK_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_DAY`
+--
+
+LOCK TABLES `LEARNING_DAY` WRITE;
+/*!40000 ALTER TABLE `LEARNING_DAY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_DAY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_DAY_CONTENT`
+--
+
+DROP TABLE IF EXISTS `LEARNING_DAY_CONTENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_DAY_CONTENT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LEARNING_DAY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_DAY_CONTENT`
+--
+
+LOCK TABLES `LEARNING_DAY_CONTENT` WRITE;
+/*!40000 ALTER TABLE `LEARNING_DAY_CONTENT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_DAY_CONTENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_DAY_REQUIREMNT`
+--
+
+DROP TABLE IF EXISTS `LEARNING_DAY_REQUIREMNT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_DAY_REQUIREMNT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LEARNING_DAY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_DAY_REQUIREMNT`
+--
+
+LOCK TABLES `LEARNING_DAY_REQUIREMNT` WRITE;
+/*!40000 ALTER TABLE `LEARNING_DAY_REQUIREMNT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_DAY_REQUIREMNT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_RESOURCE`
+--
+
+DROP TABLE IF EXISTS `LEARNING_RESOURCE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_RESOURCE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LIBRARY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_RESOURCE`
+--
+
+LOCK TABLES `LEARNING_RESOURCE` WRITE;
+/*!40000 ALTER TABLE `LEARNING_RESOURCE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_RESOURCE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_RESOURCE_TYPE`
+--
+
+DROP TABLE IF EXISTS `LEARNING_RESOURCE_TYPE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_RESOURCE_TYPE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_RESOURCE_TYPE`
+--
+
+LOCK TABLES `LEARNING_RESOURCE_TYPE` WRITE;
+/*!40000 ALTER TABLE `LEARNING_RESOURCE_TYPE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_RESOURCE_TYPE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_SESSION`
+--
+
+DROP TABLE IF EXISTS `LEARNING_SESSION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_SESSION` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SEMESTER_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_SESSION`
+--
+
+LOCK TABLES `LEARNING_SESSION` WRITE;
+/*!40000 ALTER TABLE `LEARNING_SESSION` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_SESSION` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LEARNING_WEEK`
+--
+
+DROP TABLE IF EXISTS `LEARNING_WEEK`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LEARNING_WEEK` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LEARNING_SESSION_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LEARNING_WEEK`
+--
+
+LOCK TABLES `LEARNING_WEEK` WRITE;
+/*!40000 ALTER TABLE `LEARNING_WEEK` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LEARNING_WEEK` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIBRARY`
+--
+
+DROP TABLE IF EXISTS `LIBRARY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIBRARY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIBRARY`
+--
+
+LOCK TABLES `LIBRARY` WRITE;
+/*!40000 ALTER TABLE `LIBRARY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LIBRARY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MENU`
+--
+
+DROP TABLE IF EXISTS `MENU`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MENU` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `menu_order` int(11) DEFAULT NULL,
+  `ROOT_ID` int(11) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MENU`
+--
+
+LOCK TABLES `MENU` WRITE;
+/*!40000 ALTER TABLE `MENU` DISABLE KEYS */;
+INSERT INTO `MENU` VALUES (1,'Menu Manager','/admin/menu-manager.xhtml',2,NULL,'fa fa-windows'),(2,'Home','/',1,NULL,'fa fa-hospital-o'),(3,'test','abc',3,NULL,'fa fa-bath');
+/*!40000 ALTER TABLE `MENU` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MENU_ICON`
+--
+
+DROP TABLE IF EXISTS `MENU_ICON`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MENU_ICON` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `VALUE` varchar(50) DEFAULT NULL,
+  `NAME` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=982 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MENU_ICON`
+--
+
+LOCK TABLES `MENU_ICON` WRITE;
+/*!40000 ALTER TABLE `MENU_ICON` DISABLE KEYS */;
+INSERT INTO `MENU_ICON` VALUES (1,'fa fa-address-book','address-book'),(5,'fa fa-address-card','address-card'),(6,'fa fa-address-card-o','address-card-o'),(7,'fa fa-bandcamp','bandcamp'),(8,'fa fa-bath','bath'),(9,'fa fa-bathtub','bathtub'),(10,'fa fa-drivers-license','drivers-license'),(11,'fa fa-drivers-license-o','drivers-license-o'),(12,'fa fa-eercast','eercast'),(13,'fa fa-envelope-open','envelope-open'),(14,'fa fa-envelope-open-o','envelope-open-o'),(15,'fa fa-etsy','etsy'),(16,'fa fa-free-code-camp','free-code-camp'),(17,'fa fa-grav','grav'),(18,'fa fa-handshake-o','handshake-o'),(19,'fa fa-id-badge','id-badge'),(20,'fa fa-id-card','id-card'),(21,'fa fa-id-card-o','id-card-o'),(22,'fa fa-imdb','imdb'),(23,'fa fa-linode','linode'),(24,'fa fa-meetup','meetup'),(25,'fa fa-microchip','microchip'),(26,'fa fa-podcast','podcast'),(27,'fa fa-quora','quora'),(28,'fa fa-ravelry','ravelry'),(29,'fa fa-s15','s15'),(30,'fa fa-shower','shower'),(31,'fa fa-snowflake-o','snowflake-o'),(32,'fa fa-superpowers','superpowers'),(33,'fa fa-telegram','telegram'),(34,'fa fa-thermometer','thermometer'),(35,'fa fa-thermometer-0','thermometer-0'),(36,'fa fa-thermometer-1','thermometer-1'),(37,'fa fa-thermometer-2','thermometer-2'),(38,'fa fa-thermometer-3','thermometer-3'),(39,'fa fa-thermometer-4','thermometer-4'),(40,'fa fa-thermometer-empty','thermometer-empty'),(41,'fa fa-thermometer-full','thermometer-full'),(42,'fa fa-thermometer-half','thermometer-half'),(43,'fa fa-thermometer-quarter','thermometer-quarter'),(44,'fa fa-thermometer-three-quarters','thermometer-three-quarters'),(45,'fa fa-times-rectangle','times-rectangle'),(46,'fa fa-times-rectangle-o','times-rectangle-o'),(47,'fa fa-user-circle','user-circle'),(48,'fa fa-user-circle-o','user-circle-o'),(49,'fa fa-user-o','user-o'),(50,'fa fa-vcard','vcard'),(51,'fa fa-vcard-o','vcard-o'),(52,'fa fa-window-close','window-close'),(53,'fa fa-window-close-o','window-close-o'),(54,'fa fa-window-maximize','window-maximize'),(55,'fa fa-window-minimize','window-minimize'),(56,'fa fa-window-restore','window-restore'),(57,'fa fa-wpexplorer','wpexplorer'),(58,'fa fa-address-book','address-book'),(59,'fa fa-address-book-o','address-book-o'),(60,'fa fa-address-card','address-card'),(61,'fa fa-address-card-o','address-card-o'),(62,'fa fa-adjust','adjust'),(63,'fa fa-american-sign-language-interpreting','american-sign-language-interpreting'),(64,'fa fa-anchor','anchor'),(65,'fa fa-archive','archive'),(66,'fa fa-area-chart','area-chart'),(67,'fa fa-arrows','arrows'),(68,'fa fa-arrows-h','arrows-h'),(69,'fa fa-arrows-v','arrows-v'),(70,'fa fa-asl-interpreting','asl-interpreting'),(71,'fa fa-assistive-listening-systems','assistive-listening-systems'),(72,'fa fa-asterisk','asterisk'),(73,'fa fa-at','at'),(74,'fa fa-audio-description','audio-description'),(75,'fa fa-automobile','automobile'),(76,'fa fa-balance-scale','balance-scale'),(77,'fa fa-ban','ban'),(78,'fa fa-bank','bank'),(79,'fa fa-bar-chart','bar-chart'),(80,'fa fa-bar-chart-o','bar-chart-o'),(81,'fa fa-barcode','barcode'),(82,'fa fa-bars','bars'),(83,'fa fa-bath','bath'),(84,'fa fa-bathtub','bathtub'),(85,'fa fa-battery','battery'),(86,'fa fa-battery-0','battery-0'),(87,'fa fa-battery-1','battery-1'),(88,'fa fa-battery-2','battery-2'),(89,'fa fa-battery-3','battery-3'),(90,'fa fa-battery-4','battery-4'),(91,'fa fa-battery-empty','battery-empty'),(92,'fa fa-battery-full','battery-full'),(93,'fa fa-battery-half','battery-half'),(94,'fa fa-battery-quarter','battery-quarter'),(95,'fa fa-battery-three-quarters','battery-three-quarters'),(96,'fa fa-bed','bed'),(97,'fa fa-beer','beer'),(98,'fa fa-bell','bell'),(99,'fa fa-bell-o','bell-o'),(100,'fa fa-bell-slash','bell-slash'),(101,'fa fa-bell-slash-o','bell-slash-o'),(102,'fa fa-bicycle','bicycle'),(103,'fa fa-binoculars','binoculars'),(104,'fa fa-birthday-cake','birthday-cake'),(105,'fa fa-blind','blind'),(106,'fa fa-bluetooth','bluetooth'),(107,'fa fa-bluetooth-b','bluetooth-b'),(108,'fa fa-bolt','bolt'),(109,'fa fa-bomb','bomb'),(110,'fa fa-book','book'),(111,'fa fa-bookmark','bookmark'),(112,'fa fa-bookmark-o','bookmark-o'),(113,'fa fa-braille','braille'),(114,'fa fa-briefcase','briefcase'),(115,'fa fa-bug','bug'),(116,'fa fa-building','building'),(117,'fa fa-building-o','building-o'),(118,'fa fa-bullhorn','bullhorn'),(119,'fa fa-bullseye','bullseye'),(120,'fa fa-bus','bus'),(121,'fa fa-cab','cab'),(122,'fa fa-calculator','calculator'),(123,'fa fa-calendar','calendar'),(124,'fa fa-calendar-check-o','calendar-check-o'),(125,'fa fa-calendar-minus-o','calendar-minus-o'),(126,'fa fa-calendar-o','calendar-o'),(127,'fa fa-calendar-plus-o','calendar-plus-o'),(128,'fa fa-calendar-times-o','calendar-times-o'),(129,'fa fa-camera','camera'),(130,'fa fa-camera-retro','camera-retro'),(131,'fa fa-car','car'),(132,'fa fa-caret-square-o-down','caret-square-o-down'),(133,'fa fa-caret-square-o-left','caret-square-o-left'),(134,'fa fa-caret-square-o-right','caret-square-o-right'),(135,'fa fa-caret-square-o-up','caret-square-o-up'),(136,'fa fa-cart-arrow-down','cart-arrow-down'),(137,'fa fa-cart-plus','cart-plus'),(138,'fa fa-cc','cc'),(139,'fa fa-certificate','certificate'),(140,'fa fa-check','check'),(141,'fa fa-check-circle','check-circle'),(142,'fa fa-check-circle-o','check-circle-o'),(143,'fa fa-check-square','check-square'),(144,'fa fa-check-square-o','check-square-o'),(145,'fa fa-child','child'),(146,'fa fa-circle','circle'),(147,'fa fa-circle-o','circle-o'),(148,'fa fa-circle-o-notch','circle-o-notch'),(149,'fa fa-circle-thin','circle-thin'),(150,'fa fa-clock-o','clock-o'),(151,'fa fa-clone','clone'),(152,'fa fa-close','close'),(153,'fa fa-cloud','cloud'),(154,'fa fa-cloud-download','cloud-download'),(155,'fa fa-cloud-upload','cloud-upload'),(156,'fa fa-code','code'),(157,'fa fa-code-fork','code-fork'),(158,'fa fa-coffee','coffee'),(159,'fa fa-cog','cog'),(160,'fa fa-cogs','cogs'),(161,'fa fa-comment','comment'),(162,'fa fa-comment-o','comment-o'),(163,'fa fa-commenting','commenting'),(164,'fa fa-commenting-o','commenting-o'),(165,'fa fa-comments','comments'),(166,'fa fa-comments-o','comments-o'),(167,'fa fa-compass','compass'),(168,'fa fa-copyright','copyright'),(169,'fa fa-creative-commons','creative-commons'),(170,'fa fa-credit-card','credit-card'),(171,'fa fa-credit-card-alt','credit-card-alt'),(172,'fa fa-crop','crop'),(173,'fa fa-crosshairs','crosshairs'),(174,'fa fa-cube','cube'),(175,'fa fa-cubes','cubes'),(176,'fa fa-cutlery','cutlery'),(177,'fa fa-dashboard','dashboard'),(178,'fa fa-database','database'),(179,'fa fa-deaf','deaf'),(180,'fa fa-deafness','deafness'),(181,'fa fa-desktop','desktop'),(182,'fa fa-diamond','diamond'),(183,'fa fa-dot-circle-o','dot-circle-o'),(184,'fa fa-download','download'),(185,'fa fa-drivers-license','drivers-license'),(186,'fa fa-drivers-license-o','drivers-license-o'),(187,'fa fa-edit','edit'),(188,'fa fa-ellipsis-h','ellipsis-h'),(189,'fa fa-ellipsis-v','ellipsis-v'),(190,'fa fa-envelope','envelope'),(191,'fa fa-envelope-o','envelope-o'),(192,'fa fa-envelope-open','envelope-open'),(193,'fa fa-envelope-open-o','envelope-open-o'),(194,'fa fa-envelope-square','envelope-square'),(195,'fa fa-eraser','eraser'),(196,'fa fa-exchange','exchange'),(197,'fa fa-exclamation','exclamation'),(198,'fa fa-exclamation-circle','exclamation-circle'),(199,'fa fa-exclamation-triangle','exclamation-triangle'),(200,'fa fa-external-link','external-link'),(201,'fa fa-external-link-square','external-link-square'),(202,'fa fa-eye','eye'),(203,'fa fa-eye-slash','eye-slash'),(204,'fa fa-eyedropper','eyedropper'),(205,'fa fa-fax','fax'),(206,'fa fa-feed','feed'),(207,'fa fa-female','female'),(208,'fa fa-fighter-jet','fighter-jet'),(209,'fa fa-file-archive-o','file-archive-o'),(210,'fa fa-file-audio-o','file-audio-o'),(211,'fa fa-file-code-o','file-code-o'),(212,'fa fa-file-excel-o','file-excel-o'),(213,'fa fa-file-image-o','file-image-o'),(214,'fa fa-file-movie-o','file-movie-o'),(215,'fa fa-file-pdf-o','file-pdf-o'),(216,'fa fa-file-photo-o','file-photo-o'),(217,'fa fa-file-picture-o','file-picture-o'),(218,'fa fa-file-powerpoint-o','file-powerpoint-o'),(219,'fa fa-file-sound-o','file-sound-o'),(220,'fa fa-file-video-o','file-video-o'),(221,'fa fa-file-word-o','file-word-o'),(222,'fa fa-file-zip-o','file-zip-o'),(223,'fa fa-film','film'),(224,'fa fa-filter','filter'),(225,'fa fa-fire','fire'),(226,'fa fa-fire-extinguisher','fire-extinguisher'),(227,'fa fa-flag','flag'),(228,'fa fa-flag-checkered','flag-checkered'),(229,'fa fa-flag-o','flag-o'),(230,'fa fa-flash','flash'),(231,'fa fa-flask','flask'),(232,'fa fa-folder','folder'),(233,'fa fa-folder-o','folder-o'),(234,'fa fa-folder-open','folder-open'),(235,'fa fa-folder-open-o','folder-open-o'),(236,'fa fa-frown-o','frown-o'),(237,'fa fa-futbol-o','futbol-o'),(238,'fa fa-gamepad','gamepad'),(239,'fa fa-gavel','gavel'),(240,'fa fa-gear','gear'),(241,'fa fa-gears','gears'),(242,'fa fa-gift','gift'),(243,'fa fa-glass','glass'),(244,'fa fa-globe','globe'),(245,'fa fa-graduation-cap','graduation-cap'),(246,'fa fa-group','group'),(247,'fa fa-hand-grab-o','hand-grab-o'),(248,'fa fa-hand-lizard-o','hand-lizard-o'),(249,'fa fa-hand-paper-o','hand-paper-o'),(250,'fa fa-hand-peace-o','hand-peace-o'),(251,'fa fa-hand-pointer-o','hand-pointer-o'),(252,'fa fa-hand-rock-o','hand-rock-o'),(253,'fa fa-hand-scissors-o','hand-scissors-o'),(254,'fa fa-hand-spock-o','hand-spock-o'),(255,'fa fa-hand-stop-o','hand-stop-o'),(256,'fa fa-handshake-o','handshake-o'),(257,'fa fa-hard-of-hearing','hard-of-hearing'),(258,'fa fa-hashtag','hashtag'),(259,'fa fa-hdd-o','hdd-o'),(260,'fa fa-headphones','headphones'),(261,'fa fa-heart','heart'),(262,'fa fa-heart-o','heart-o'),(263,'fa fa-heartbeat','heartbeat'),(264,'fa fa-history','history'),(265,'fa fa-home','home'),(266,'fa fa-hotel','hotel'),(267,'fa fa-hourglass','hourglass'),(268,'fa fa-hourglass-1','hourglass-1'),(269,'fa fa-hourglass-2','hourglass-2'),(270,'fa fa-hourglass-3','hourglass-3'),(271,'fa fa-hourglass-end','hourglass-end'),(272,'fa fa-hourglass-half','hourglass-half'),(273,'fa fa-hourglass-o','hourglass-o'),(274,'fa fa-hourglass-start','hourglass-start'),(275,'fa fa-i-cursor','i-cursor'),(276,'fa fa-id-badge','id-badge'),(277,'fa fa-id-card','id-card'),(278,'fa fa-id-card-o','id-card-o'),(279,'fa fa-image','image'),(280,'fa fa-inbox','inbox'),(281,'fa fa-industry','industry'),(282,'fa fa-info','info'),(283,'fa fa-info-circle','info-circle'),(284,'fa fa-institution','institution'),(285,'fa fa-key','key'),(286,'fa fa-keyboard-o','keyboard-o'),(287,'fa fa-language','language'),(288,'fa fa-laptop','laptop'),(289,'fa fa-leaf','leaf'),(290,'fa fa-legal','legal'),(291,'fa fa-lemon-o','lemon-o'),(292,'fa fa-level-down','level-down'),(293,'fa fa-level-up','level-up'),(294,'fa fa-life-bouy','life-bouy'),(295,'fa fa-life-buoy','life-buoy'),(296,'fa fa-life-ring','life-ring'),(297,'fa fa-life-saver','life-saver'),(298,'fa fa-lightbulb-o','lightbulb-o'),(299,'fa fa-line-chart','line-chart'),(300,'fa fa-location-arrow','location-arrow'),(301,'fa fa-lock','lock'),(302,'fa fa-low-vision','low-vision'),(303,'fa fa-magic','magic'),(304,'fa fa-magnet','magnet'),(305,'fa fa-mail-forward','mail-forward'),(306,'fa fa-mail-reply','mail-reply'),(307,'fa fa-mail-reply-all','mail-reply-all'),(308,'fa fa-male','male'),(309,'fa fa-map','map'),(310,'fa fa-map-marker','map-marker'),(311,'fa fa-map-o','map-o'),(312,'fa fa-map-pin','map-pin'),(313,'fa fa-map-signs','map-signs'),(314,'fa fa-meh-o','meh-o'),(315,'fa fa-microchip','microchip'),(316,'fa fa-microphone','microphone'),(317,'fa fa-microphone-slash','microphone-slash'),(318,'fa fa-minus','minus'),(319,'fa fa-minus-circle','minus-circle'),(320,'fa fa-minus-square','minus-square'),(321,'fa fa-minus-square-o','minus-square-o'),(322,'fa fa-mobile','mobile'),(323,'fa fa-mobile-phone','mobile-phone'),(324,'fa fa-money','money'),(325,'fa fa-moon-o','moon-o'),(326,'fa fa-mortar-board','mortar-board'),(327,'fa fa-motorcycle','motorcycle'),(328,'fa fa-mouse-pointer','mouse-pointer'),(329,'fa fa-music','music'),(330,'fa fa-navicon','navicon'),(331,'fa fa-newspaper-o','newspaper-o'),(332,'fa fa-object-group','object-group'),(333,'fa fa-object-ungroup','object-ungroup'),(334,'fa fa-paint-brush','paint-brush'),(335,'fa fa-paper-plane','paper-plane'),(336,'fa fa-paper-plane-o','paper-plane-o'),(337,'fa fa-paw','paw'),(338,'fa fa-pencil','pencil'),(339,'fa fa-pencil-square','pencil-square'),(340,'fa fa-pencil-square-o','pencil-square-o'),(341,'fa fa-percent','percent'),(342,'fa fa-phone','phone'),(343,'fa fa-phone-square','phone-square'),(344,'fa fa-photo','photo'),(345,'fa fa-picture-o','picture-o'),(346,'fa fa-pie-chart','pie-chart'),(347,'fa fa-plane','plane'),(348,'fa fa-plug','plug'),(349,'fa fa-plus','plus'),(350,'fa fa-plus-circle','plus-circle'),(351,'fa fa-plus-square','plus-square'),(352,'fa fa-plus-square-o','plus-square-o'),(353,'fa fa-podcast','podcast'),(354,'fa fa-power-off','power-off'),(355,'fa fa-print','print'),(356,'fa fa-puzzle-piece','puzzle-piece'),(357,'fa fa-qrcode','qrcode'),(358,'fa fa-question','question'),(359,'fa fa-question-circle','question-circle'),(360,'fa fa-question-circle-o','question-circle-o'),(361,'fa fa-quote-left','quote-left'),(362,'fa fa-quote-right','quote-right'),(363,'fa fa-random','random'),(364,'fa fa-recycle','recycle'),(365,'fa fa-refresh','refresh'),(366,'fa fa-registered','registered'),(367,'fa fa-remove','remove'),(368,'fa fa-reorder','reorder'),(369,'fa fa-reply','reply'),(370,'fa fa-reply-all','reply-all'),(371,'fa fa-retweet','retweet'),(372,'fa fa-road','road'),(373,'fa fa-rocket','rocket'),(374,'fa fa-rss','rss'),(375,'fa fa-rss-square','rss-square'),(376,'fa fa-s15','s15'),(377,'fa fa-search','search'),(378,'fa fa-search-minus','search-minus'),(379,'fa fa-search-plus','search-plus'),(380,'fa fa-send','send'),(381,'fa fa-send-o','send-o'),(382,'fa fa-server','server'),(383,'fa fa-share','share'),(384,'fa fa-share-alt','share-alt'),(385,'fa fa-share-alt-square','share-alt-square'),(386,'fa fa-share-square','share-square'),(387,'fa fa-share-square-o','share-square-o'),(388,'fa fa-shield','shield'),(389,'fa fa-ship','ship'),(390,'fa fa-shopping-bag','shopping-bag'),(391,'fa fa-shopping-basket','shopping-basket'),(392,'fa fa-shopping-cart','shopping-cart'),(393,'fa fa-shower','shower'),(394,'fa fa-sign-in','sign-in'),(395,'fa fa-sign-language','sign-language'),(396,'fa fa-sign-out','sign-out'),(397,'fa fa-signal','signal'),(398,'fa fa-signing','signing'),(399,'fa fa-sitemap','sitemap'),(400,'fa fa-sliders','sliders'),(401,'fa fa-smile-o','smile-o'),(402,'fa fa-snowflake-o','snowflake-o'),(403,'fa fa-soccer-ball-o','soccer-ball-o'),(404,'fa fa-sort','sort'),(405,'fa fa-sort-alpha-asc','sort-alpha-asc'),(406,'fa fa-sort-alpha-desc','sort-alpha-desc'),(407,'fa fa-sort-amount-asc','sort-amount-asc'),(408,'fa fa-sort-amount-desc','sort-amount-desc'),(409,'fa fa-sort-asc','sort-asc'),(410,'fa fa-sort-desc','sort-desc'),(411,'fa fa-sort-down','sort-down'),(412,'fa fa-sort-numeric-asc','sort-numeric-asc'),(413,'fa fa-sort-numeric-desc','sort-numeric-desc'),(414,'fa fa-sort-up','sort-up'),(415,'fa fa-space-shuttle','space-shuttle'),(416,'fa fa-spinner','spinner'),(417,'fa fa-spoon','spoon'),(418,'fa fa-square','square'),(419,'fa fa-square-o','square-o'),(420,'fa fa-star','star'),(421,'fa fa-star-half','star-half'),(422,'fa fa-star-half-empty','star-half-empty'),(423,'fa fa-star-half-full','star-half-full'),(424,'fa fa-star-half-o','star-half-o'),(425,'fa fa-star-o','star-o'),(426,'fa fa-sticky-note','sticky-note'),(427,'fa fa-sticky-note-o','sticky-note-o'),(428,'fa fa-street-view','street-view'),(429,'fa fa-suitcase','suitcase'),(430,'fa fa-sun-o','sun-o'),(431,'fa fa-support','support'),(432,'fa fa-tablet','tablet'),(433,'fa fa-tachometer','tachometer'),(434,'fa fa-tag','tag'),(435,'fa fa-tags','tags'),(436,'fa fa-tasks','tasks'),(437,'fa fa-taxi','taxi'),(438,'fa fa-television','television'),(439,'fa fa-terminal','terminal'),(440,'fa fa-thermometer','thermometer'),(441,'fa fa-thermometer-0','thermometer-0'),(442,'fa fa-thermometer-1','thermometer-1'),(443,'fa fa-thermometer-2','thermometer-2'),(444,'fa fa-thermometer-3','thermometer-3'),(445,'fa fa-thermometer-4','thermometer-4'),(446,'fa fa-thermometer-empty','thermometer-empty'),(447,'fa fa-thermometer-full','thermometer-full'),(448,'fa fa-thermometer-half','thermometer-half'),(449,'fa fa-thermometer-quarter','thermometer-quarter'),(450,'fa fa-thermometer-three-quarters','thermometer-three-quarters'),(451,'fa fa-thumb-tack','thumb-tack'),(452,'fa fa-thumbs-down','thumbs-down'),(453,'fa fa-thumbs-o-down','thumbs-o-down'),(454,'fa fa-thumbs-o-up','thumbs-o-up'),(455,'fa fa-thumbs-up','thumbs-up'),(456,'fa fa-ticket','ticket'),(457,'fa fa-times','times'),(458,'fa fa-times-circle','times-circle'),(459,'fa fa-times-circle-o','times-circle-o'),(460,'fa fa-times-rectangle','times-rectangle'),(461,'fa fa-times-rectangle-o','times-rectangle-o'),(462,'fa fa-tint','tint'),(463,'fa fa-toggle-down','toggle-down'),(464,'fa fa-toggle-left','toggle-left'),(465,'fa fa-toggle-off','toggle-off'),(466,'fa fa-toggle-on','toggle-on'),(467,'fa fa-toggle-right','toggle-right'),(468,'fa fa-toggle-up','toggle-up'),(469,'fa fa-trademark','trademark'),(470,'fa fa-trash','trash'),(471,'fa fa-trash-o','trash-o'),(472,'fa fa-tree','tree'),(473,'fa fa-trophy','trophy'),(474,'fa fa-truck','truck'),(475,'fa fa-tty','tty'),(476,'fa fa-tv','tv'),(477,'fa fa-umbrella','umbrella'),(478,'fa fa-universal-access','universal-access'),(479,'fa fa-university','university'),(480,'fa fa-unlock','unlock'),(481,'fa fa-unlock-alt','unlock-alt'),(482,'fa fa-unsorted','unsorted'),(483,'fa fa-upload','upload'),(484,'fa fa-user','user'),(485,'fa fa-user-circle','user-circle'),(486,'fa fa-user-circle-o','user-circle-o'),(487,'fa fa-user-o','user-o'),(488,'fa fa-user-plus','user-plus'),(489,'fa fa-user-secret','user-secret'),(490,'fa fa-user-times','user-times'),(491,'fa fa-users','users'),(492,'fa fa-vcard','vcard'),(493,'fa fa-vcard-o','vcard-o'),(494,'fa fa-video-camera','video-camera'),(495,'fa fa-volume-control-phone','volume-control-phone'),(496,'fa fa-volume-down','volume-down'),(497,'fa fa-volume-off','volume-off'),(498,'fa fa-volume-up','volume-up'),(499,'fa fa-warning','warning'),(500,'fa fa-wheelchair','wheelchair'),(501,'fa fa-wheelchair-alt','wheelchair-alt'),(502,'fa fa-wifi','wifi'),(503,'fa fa-window-close','window-close'),(504,'fa fa-window-close-o','window-close-o'),(505,'fa fa-window-maximize','window-maximize'),(506,'fa fa-window-minimize','window-minimize'),(507,'fa fa-window-restore','window-restore'),(508,'fa fa-wrench','wrench'),(509,'fa fa-american-sign-language-interpreting','american-sign-language-interpreting'),(510,'fa fa-asl-interpreting','asl-interpreting'),(511,'fa fa-assistive-listening-systems','assistive-listening-systems'),(512,'fa fa-audio-description','audio-description'),(513,'fa fa-blind','blind'),(514,'fa fa-braille','braille'),(515,'fa fa-cc','cc'),(516,'fa fa-deaf','deaf'),(517,'fa fa-deafness','deafness'),(518,'fa fa-hard-of-hearing','hard-of-hearing'),(519,'fa fa-low-vision','low-vision'),(520,'fa fa-question-circle-o','question-circle-o'),(521,'fa fa-sign-language','sign-language'),(522,'fa fa-signing','signing'),(523,'fa fa-tty','tty'),(524,'fa fa-universal-access','universal-access'),(525,'fa fa-volume-control-phone','volume-control-phone'),(526,'fa fa-wheelchair','wheelchair'),(527,'fa fa-wheelchair-alt','wheelchair-alt'),(528,'fa fa-hand-grab-o','hand-grab-o'),(529,'fa fa-hand-lizard-o','hand-lizard-o'),(530,'fa fa-hand-o-down','hand-o-down'),(531,'fa fa-hand-o-left','hand-o-left'),(532,'fa fa-hand-o-right','hand-o-right'),(533,'fa fa-hand-o-up','hand-o-up'),(534,'fa fa-hand-paper-o','hand-paper-o'),(535,'fa fa-hand-peace-o','hand-peace-o'),(536,'fa fa-hand-pointer-o','hand-pointer-o'),(537,'fa fa-hand-rock-o','hand-rock-o'),(538,'fa fa-hand-scissors-o','hand-scissors-o'),(539,'fa fa-hand-spock-o','hand-spock-o'),(540,'fa fa-hand-stop-o','hand-stop-o'),(541,'fa fa-thumbs-down','thumbs-down'),(542,'fa fa-thumbs-o-down','thumbs-o-down'),(543,'fa fa-thumbs-o-up','thumbs-o-up'),(544,'fa fa-thumbs-up','thumbs-up'),(545,'fa fa-ambulance','ambulance'),(546,'fa fa-automobile','automobile'),(547,'fa fa-bicycle','bicycle'),(548,'fa fa-bus','bus'),(549,'fa fa-cab','cab'),(550,'fa fa-car','car'),(551,'fa fa-fighter-jet','fighter-jet'),(552,'fa fa-motorcycle','motorcycle'),(553,'fa fa-plane','plane'),(554,'fa fa-rocket','rocket'),(555,'fa fa-ship','ship'),(556,'fa fa-space-shuttle','space-shuttle'),(557,'fa fa-subway','subway'),(558,'fa fa-taxi','taxi'),(559,'fa fa-train','train'),(560,'fa fa-truck','truck'),(561,'fa fa-wheelchair','wheelchair'),(562,'fa fa-wheelchair-alt','wheelchair-alt'),(563,'fa fa-Gender Icons','Gender Icons'),(564,'',''),(565,'fa fa-genderless','genderless'),(566,'fa fa-intersex','intersex'),(567,'fa fa-mars','mars'),(568,'fa fa-mars-double','mars-double'),(569,'fa fa-mars-stroke','mars-stroke'),(570,'fa fa-mars-stroke-h','mars-stroke-h'),(571,'fa fa-mars-stroke-v','mars-stroke-v'),(572,'fa fa-mercury','mercury'),(573,'fa fa-neuter','neuter'),(574,'fa fa-transgender','transgender'),(575,'fa fa-transgender-alt','transgender-alt'),(576,'fa fa-venus','venus'),(577,'fa fa-venus-double','venus-double'),(578,'fa fa-venus-mars','venus-mars'),(579,'fa fa-File Type Icons','File Type Icons'),(580,'',''),(581,'fa fa-file','file'),(582,'fa fa-file-archive-o','file-archive-o'),(583,'fa fa-file-audio-o','file-audio-o'),(584,'fa fa-file-code-o','file-code-o'),(585,'fa fa-file-excel-o','file-excel-o'),(586,'fa fa-file-image-o','file-image-o'),(587,'fa fa-file-movie-o','file-movie-o'),(588,'fa fa-file-o','file-o'),(589,'fa fa-file-pdf-o','file-pdf-o'),(590,'fa fa-file-photo-o','file-photo-o'),(591,'fa fa-file-picture-o','file-picture-o'),(592,'fa fa-file-powerpoint-o','file-powerpoint-o'),(593,'fa fa-file-sound-o','file-sound-o'),(594,'fa fa-file-text','file-text'),(595,'fa fa-file-text-o','file-text-o'),(596,'fa fa-file-video-o','file-video-o'),(597,'fa fa-file-word-o','file-word-o'),(598,'fa fa-file-zip-o','file-zip-o'),(599,'fa fa-circle-o-notch','circle-o-notch'),(600,'fa fa-cog','cog'),(601,'fa fa-gear','gear'),(602,'fa fa-refresh','refresh'),(603,'fa fa-spinner','spinner'),(604,'fa fa-check-square','check-square'),(605,'fa fa-check-square-o','check-square-o'),(606,'fa fa-circle','circle'),(607,'fa fa-circle-o','circle-o'),(608,'fa fa-dot-circle-o','dot-circle-o'),(609,'fa fa-minus-square','minus-square'),(610,'fa fa-minus-square-o','minus-square-o'),(611,'fa fa-plus-square','plus-square'),(612,'fa fa-plus-square-o','plus-square-o'),(613,'fa fa-square','square'),(614,'fa fa-square-o','square-o'),(615,'fa fa-cc-amex','cc-amex'),(616,'fa fa-cc-diners-club','cc-diners-club'),(617,'fa fa-cc-discover','cc-discover'),(618,'fa fa-cc-jcb','cc-jcb'),(619,'fa fa-cc-mastercard','cc-mastercard'),(620,'fa fa-cc-paypal','cc-paypal'),(621,'fa fa-cc-stripe','cc-stripe'),(622,'fa fa-cc-visa','cc-visa'),(623,'fa fa-credit-card','credit-card'),(624,'fa fa-credit-card-alt','credit-card-alt'),(625,'fa fa-google-wallet','google-wallet'),(626,'fa fa-paypal','paypal'),(627,'fa fa-area-chart','area-chart'),(628,'fa fa-bar-chart','bar-chart'),(629,'fa fa-bar-chart-o','bar-chart-o'),(630,'fa fa-line-chart','line-chart'),(631,'fa fa-pie-chart','pie-chart'),(632,'fa fa-bitcoin','bitcoin'),(633,'fa fa-btc','btc'),(634,'fa fa-cny','cny'),(635,'fa fa-dollar','dollar'),(636,'fa fa-eur','eur'),(637,'fa fa-euro','euro'),(638,'fa fa-gbp','gbp'),(639,'fa fa-gg','gg'),(640,'fa fa-gg-circle','gg-circle'),(641,'fa fa-ils','ils'),(642,'fa fa-inr','inr'),(643,'fa fa-jpy','jpy'),(644,'fa fa-krw','krw'),(645,'fa fa-money','money'),(646,'fa fa-rmb','rmb'),(647,'fa fa-rouble','rouble'),(648,'fa fa-rub','rub'),(649,'fa fa-ruble','ruble'),(650,'fa fa-rupee','rupee'),(651,'fa fa-shekel','shekel'),(652,'fa fa-sheqel','sheqel'),(653,'fa fa-try','try'),(654,'fa fa-turkish-lira','turkish-lira'),(655,'fa fa-usd','usd'),(656,'fa fa-won','won'),(657,'fa fa-yen','yen'),(658,'fa fa-align-center','align-center'),(659,'fa fa-align-justify','align-justify'),(660,'fa fa-align-left','align-left'),(661,'fa fa-align-right','align-right'),(662,'fa fa-bold','bold'),(663,'fa fa-chain','chain'),(664,'fa fa-chain-broken','chain-broken'),(665,'fa fa-clipboard','clipboard'),(666,'fa fa-columns','columns'),(667,'fa fa-copy','copy'),(668,'fa fa-cut','cut'),(669,'fa fa-dedent','dedent'),(670,'fa fa-eraser','eraser'),(671,'fa fa-file','file'),(672,'fa fa-file-o','file-o'),(673,'fa fa-file-text','file-text'),(674,'fa fa-file-text-o','file-text-o'),(675,'fa fa-files-o','files-o'),(676,'fa fa-floppy-o','floppy-o'),(677,'fa fa-font','font'),(678,'fa fa-header','header'),(679,'fa fa-indent','indent'),(680,'fa fa-italic','italic'),(681,'fa fa-link','link'),(682,'fa fa-list','list'),(683,'fa fa-list-alt','list-alt'),(684,'fa fa-list-ol','list-ol'),(685,'fa fa-list-ul','list-ul'),(686,'fa fa-outdent','outdent'),(687,'fa fa-paperclip','paperclip'),(688,'fa fa-paragraph','paragraph'),(689,'fa fa-paste','paste'),(690,'fa fa-repeat','repeat'),(691,'fa fa-rotate-left','rotate-left'),(692,'fa fa-rotate-right','rotate-right'),(693,'fa fa-save','save'),(694,'fa fa-scissors','scissors'),(695,'fa fa-strikethrough','strikethrough'),(696,'fa fa-subscript','subscript'),(697,'fa fa-superscript','superscript'),(698,'fa fa-table','table'),(699,'fa fa-text-height','text-height'),(700,'fa fa-text-width','text-width'),(701,'fa fa-th','th'),(702,'fa fa-th-large','th-large'),(703,'fa fa-th-list','th-list'),(704,'fa fa-underline','underline'),(705,'fa fa-undo','undo'),(706,'fa fa-unlink','unlink'),(707,'fa fa-angle-double-down','angle-double-down'),(708,'fa fa-angle-double-left','angle-double-left'),(709,'fa fa-angle-double-right','angle-double-right'),(710,'fa fa-angle-double-up','angle-double-up'),(711,'fa fa-angle-down','angle-down'),(712,'fa fa-angle-left','angle-left'),(713,'fa fa-angle-right','angle-right'),(714,'fa fa-angle-up','angle-up'),(715,'fa fa-arrow-circle-down','arrow-circle-down'),(716,'fa fa-arrow-circle-left','arrow-circle-left'),(717,'fa fa-arrow-circle-o-down','arrow-circle-o-down'),(718,'fa fa-arrow-circle-o-left','arrow-circle-o-left'),(719,'fa fa-arrow-circle-o-right','arrow-circle-o-right'),(720,'fa fa-arrow-circle-o-up','arrow-circle-o-up'),(721,'fa fa-arrow-circle-right','arrow-circle-right'),(722,'fa fa-arrow-circle-up','arrow-circle-up'),(723,'fa fa-arrow-down','arrow-down'),(724,'fa fa-arrow-left','arrow-left'),(725,'fa fa-arrow-right','arrow-right'),(726,'fa fa-arrow-up','arrow-up'),(727,'fa fa-arrows','arrows'),(728,'fa fa-arrows-alt','arrows-alt'),(729,'fa fa-arrows-h','arrows-h'),(730,'fa fa-arrows-v','arrows-v'),(731,'fa fa-caret-down','caret-down'),(732,'fa fa-caret-left','caret-left'),(733,'fa fa-caret-right','caret-right'),(734,'fa fa-caret-square-o-down','caret-square-o-down'),(735,'fa fa-caret-square-o-left','caret-square-o-left'),(736,'fa fa-caret-square-o-right','caret-square-o-right'),(737,'fa fa-caret-square-o-up','caret-square-o-up'),(738,'fa fa-caret-up','caret-up'),(739,'fa fa-chevron-circle-down','chevron-circle-down'),(740,'fa fa-chevron-circle-left','chevron-circle-left'),(741,'fa fa-chevron-circle-right','chevron-circle-right'),(742,'fa fa-chevron-circle-up','chevron-circle-up'),(743,'fa fa-chevron-down','chevron-down'),(744,'fa fa-chevron-left','chevron-left'),(745,'fa fa-chevron-right','chevron-right'),(746,'fa fa-chevron-up','chevron-up'),(747,'fa fa-exchange','exchange'),(748,'fa fa-hand-o-down','hand-o-down'),(749,'fa fa-hand-o-left','hand-o-left'),(750,'fa fa-hand-o-right','hand-o-right'),(751,'fa fa-hand-o-up','hand-o-up'),(752,'fa fa-long-arrow-down','long-arrow-down'),(753,'fa fa-long-arrow-left','long-arrow-left'),(754,'fa fa-long-arrow-right','long-arrow-right'),(755,'fa fa-long-arrow-up','long-arrow-up'),(756,'fa fa-toggle-down','toggle-down'),(757,'fa fa-toggle-left','toggle-left'),(758,'fa fa-toggle-right','toggle-right'),(759,'fa fa-toggle-up','toggle-up'),(760,'fa fa-arrows-alt','arrows-alt'),(761,'fa fa-backward','backward'),(762,'fa fa-compress','compress'),(763,'fa fa-eject','eject'),(764,'fa fa-expand','expand'),(765,'fa fa-fast-backward','fast-backward'),(766,'fa fa-fast-forward','fast-forward'),(767,'fa fa-forward','forward'),(768,'fa fa-pause','pause'),(769,'fa fa-pause-circle','pause-circle'),(770,'fa fa-pause-circle-o','pause-circle-o'),(771,'fa fa-play','play'),(772,'fa fa-play-circle','play-circle'),(773,'fa fa-play-circle-o','play-circle-o'),(774,'fa fa-random','random'),(775,'fa fa-step-backward','step-backward'),(776,'fa fa-step-forward','step-forward'),(777,'fa fa-stop','stop'),(778,'fa fa-stop-circle','stop-circle'),(779,'fa fa-stop-circle-o','stop-circle-o'),(780,'fa fa-youtube-play','youtube-play'),(781,'fa fa-500px','500px'),(782,'fa fa-adn','adn'),(783,'fa fa-amazon','amazon'),(784,'fa fa-android','android'),(785,'fa fa-angellist','angellist'),(786,'fa fa-apple','apple'),(787,'fa fa-bandcamp','bandcamp'),(788,'fa fa-behance','behance'),(789,'fa fa-behance-square','behance-square'),(790,'fa fa-bitbucket','bitbucket'),(791,'fa fa-bitbucket-square','bitbucket-square'),(792,'fa fa-bitcoin','bitcoin'),(793,'fa fa-black-tie','black-tie'),(794,'fa fa-bluetooth','bluetooth'),(795,'fa fa-bluetooth-b','bluetooth-b'),(796,'fa fa-btc','btc'),(797,'fa fa-buysellads','buysellads'),(798,'fa fa-cc-amex','cc-amex'),(799,'fa fa-cc-diners-club','cc-diners-club'),(800,'fa fa-cc-discover','cc-discover'),(801,'fa fa-cc-jcb','cc-jcb'),(802,'fa fa-cc-mastercard','cc-mastercard'),(803,'fa fa-cc-paypal','cc-paypal'),(804,'fa fa-cc-stripe','cc-stripe'),(805,'fa fa-cc-visa','cc-visa'),(806,'fa fa-chrome','chrome'),(807,'fa fa-codepen','codepen'),(808,'fa fa-codiepie','codiepie'),(809,'fa fa-connectdevelop','connectdevelop'),(810,'fa fa-contao','contao'),(811,'fa fa-css3','css3'),(812,'fa fa-dashcube','dashcube'),(813,'fa fa-delicious','delicious'),(814,'fa fa-deviantart','deviantart'),(815,'fa fa-digg','digg'),(816,'fa fa-dribbble','dribbble'),(817,'fa fa-dropbox','dropbox'),(818,'fa fa-drupal','drupal'),(819,'fa fa-edge','edge'),(820,'fa fa-eercast','eercast'),(821,'fa fa-empire','empire'),(822,'fa fa-envira','envira'),(823,'fa fa-etsy','etsy'),(824,'fa fa-expeditedssl','expeditedssl'),(825,'fa fa-fa','fa'),(826,'fa fa-facebook','facebook'),(827,'fa fa-facebook-f','facebook-f'),(828,'fa fa-facebook-official','facebook-official'),(829,'fa fa-facebook-square','facebook-square'),(830,'fa fa-firefox','firefox'),(831,'fa fa-first-order','first-order'),(832,'fa fa-flickr','flickr'),(833,'fa fa-font-awesome','font-awesome'),(834,'fa fa-fonticons','fonticons'),(835,'fa fa-fort-awesome','fort-awesome'),(836,'fa fa-forumbee','forumbee'),(837,'fa fa-foursquare','foursquare'),(838,'fa fa-free-code-camp','free-code-camp'),(839,'fa fa-ge','ge'),(840,'fa fa-get-pocket','get-pocket'),(841,'fa fa-gg','gg'),(842,'fa fa-gg-circle','gg-circle'),(843,'fa fa-git','git'),(844,'fa fa-git-square','git-square'),(845,'fa fa-github','github'),(846,'fa fa-github-alt','github-alt'),(847,'fa fa-github-square','github-square'),(848,'fa fa-gitlab','gitlab'),(849,'fa fa-gittip','gittip'),(850,'fa fa-glide','glide'),(851,'fa fa-glide-g','glide-g'),(852,'fa fa-google','google'),(853,'fa fa-google-plus','google-plus'),(854,'fa fa-google-plus-circle','google-plus-circle'),(855,'fa fa-google-plus-official','google-plus-official'),(856,'fa fa-google-plus-square','google-plus-square'),(857,'fa fa-google-wallet','google-wallet'),(858,'fa fa-gratipay','gratipay'),(859,'fa fa-grav','grav'),(860,'fa fa-hacker-news','hacker-news'),(861,'fa fa-houzz','houzz'),(862,'fa fa-html5','html5'),(863,'fa fa-imdb','imdb'),(864,'fa fa-instagram','instagram'),(865,'fa fa-internet-explorer','internet-explorer'),(866,'fa fa-ioxhost','ioxhost'),(867,'fa fa-joomla','joomla'),(868,'fa fa-jsfiddle','jsfiddle'),(869,'fa fa-lastfm','lastfm'),(870,'fa fa-lastfm-square','lastfm-square'),(871,'fa fa-leanpub','leanpub'),(872,'fa fa-linkedin','linkedin'),(873,'fa fa-linkedin-square','linkedin-square'),(874,'fa fa-linode','linode'),(875,'fa fa-linux','linux'),(876,'fa fa-maxcdn','maxcdn'),(877,'fa fa-meanpath','meanpath'),(878,'fa fa-medium','medium'),(879,'fa fa-meetup','meetup'),(880,'fa fa-mixcloud','mixcloud'),(881,'fa fa-modx','modx'),(882,'fa fa-odnoklassniki','odnoklassniki'),(883,'fa fa-odnoklassniki-square','odnoklassniki-square'),(884,'fa fa-opencart','opencart'),(885,'fa fa-openid','openid'),(886,'fa fa-opera','opera'),(887,'fa fa-optin-monster','optin-monster'),(888,'fa fa-pagelines','pagelines'),(889,'fa fa-paypal','paypal'),(890,'fa fa-pied-piper','pied-piper'),(891,'fa fa-pied-piper-alt','pied-piper-alt'),(892,'fa fa-pied-piper-pp','pied-piper-pp'),(893,'fa fa-pinterest','pinterest'),(894,'fa fa-pinterest-p','pinterest-p'),(895,'fa fa-pinterest-square','pinterest-square'),(896,'fa fa-product-hunt','product-hunt'),(897,'fa fa-qq','qq'),(898,'fa fa-quora','quora'),(899,'fa fa-ra','ra'),(900,'fa fa-ravelry','ravelry'),(901,'fa fa-rebel','rebel'),(902,'fa fa-reddit','reddit'),(903,'fa fa-reddit-alien','reddit-alien'),(904,'fa fa-reddit-square','reddit-square'),(905,'fa fa-renren','renren'),(906,'fa fa-resistance','resistance'),(907,'fa fa-safari','safari'),(908,'fa fa-scribd','scribd'),(909,'fa fa-sellsy','sellsy'),(910,'fa fa-share-alt','share-alt'),(911,'fa fa-share-alt-square','share-alt-square'),(912,'fa fa-shirtsinbulk','shirtsinbulk'),(913,'fa fa-simplybuilt','simplybuilt'),(914,'fa fa-skyatlas','skyatlas'),(915,'fa fa-skype','skype'),(916,'fa fa-slack','slack'),(917,'fa fa-slideshare','slideshare'),(918,'fa fa-snapchat','snapchat'),(919,'fa fa-snapchat-ghost','snapchat-ghost'),(920,'fa fa-snapchat-square','snapchat-square'),(921,'fa fa-soundcloud','soundcloud'),(922,'fa fa-spotify','spotify'),(923,'fa fa-stack-exchange','stack-exchange'),(924,'fa fa-stack-overflow','stack-overflow'),(925,'fa fa-steam','steam'),(926,'fa fa-steam-square','steam-square'),(927,'fa fa-stumbleupon','stumbleupon'),(928,'fa fa-stumbleupon-circle','stumbleupon-circle'),(929,'fa fa-superpowers','superpowers'),(930,'fa fa-telegram','telegram'),(931,'fa fa-tencent-weibo','tencent-weibo'),(932,'fa fa-themeisle','themeisle'),(933,'fa fa-trello','trello'),(934,'fa fa-tripadvisor','tripadvisor'),(935,'fa fa-tumblr','tumblr'),(936,'fa fa-tumblr-square','tumblr-square'),(937,'fa fa-twitch','twitch'),(938,'fa fa-twitter','twitter'),(939,'fa fa-twitter-square','twitter-square'),(940,'fa fa-usb','usb'),(941,'fa fa-viacoin','viacoin'),(942,'fa fa-viadeo','viadeo'),(943,'fa fa-viadeo-square','viadeo-square'),(944,'fa fa-vimeo','vimeo'),(945,'fa fa-vimeo-square','vimeo-square'),(946,'fa fa-vine','vine'),(947,'fa fa-vk','vk'),(948,'fa fa-wechat','wechat'),(949,'fa fa-weibo','weibo'),(950,'fa fa-weixin','weixin'),(951,'fa fa-whatsapp','whatsapp'),(952,'fa fa-wikipedia-w','wikipedia-w'),(953,'fa fa-windows','windows'),(954,'fa fa-wordpress','wordpress'),(955,'fa fa-wpbeginner','wpbeginner'),(956,'fa fa-wpexplorer','wpexplorer'),(957,'fa fa-wpforms','wpforms'),(958,'fa fa-xing','xing'),(959,'fa fa-xing-square','xing-square'),(960,'fa fa-y-combinator','y-combinator'),(961,'fa fa-y-combinator-square','y-combinator-square'),(962,'fa fa-yahoo','yahoo'),(963,'fa fa-yc','yc'),(964,'fa fa-yc-square','yc-square'),(965,'fa fa-yelp','yelp'),(966,'fa fa-yoast','yoast'),(967,'fa fa-youtube','youtube'),(968,'fa fa-youtube-play','youtube-play'),(969,'fa fa-youtube-square','youtube-square'),(970,'fa fa-ambulance','ambulance'),(971,'fa fa-h-square','h-square'),(972,'fa fa-heart','heart'),(973,'fa fa-heart-o','heart-o'),(974,'fa fa-heartbeat','heartbeat'),(975,'fa fa-hospital-o','hospital-o'),(976,'fa fa-medkit','medkit'),(977,'fa fa-plus-square','plus-square'),(978,'fa fa-stethoscope','stethoscope'),(979,'fa fa-user-md','user-md'),(980,'fa fa-wheelchair','wheelchair'),(981,'fa fa-wheelchair-alt','wheelchair-alt');
+/*!40000 ALTER TABLE `MENU_ICON` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `OFFICE`
+--
+
+DROP TABLE IF EXISTS `OFFICE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OFFICE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `NAME` varchar(255) DEFAULT NULL,
+  `NAME_ABBR` varchar(255) DEFAULT NULL,
+  `ADDRESS` varchar(255) DEFAULT NULL,
+  `HIDDEN` tinyint(1) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `OFFICE`
+--
+
+LOCK TABLES `OFFICE` WRITE;
+/*!40000 ALTER TABLE `OFFICE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `OFFICE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PROBLEM`
+--
+
+DROP TABLE IF EXISTS `PROBLEM`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PROBLEM` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CONSPECTUS_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PROBLEM`
+--
+
+LOCK TABLES `PROBLEM` WRITE;
+/*!40000 ALTER TABLE `PROBLEM` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PROBLEM` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PROBLEM_DETAIL`
+--
+
+DROP TABLE IF EXISTS `PROBLEM_DETAIL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PROBLEM_DETAIL` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PROBLEM_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PROBLEM_DETAIL`
+--
+
+LOCK TABLES `PROBLEM_DETAIL` WRITE;
+/*!40000 ALTER TABLE `PROBLEM_DETAIL` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PROBLEM_DETAIL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PUBLISHING`
+--
+
+DROP TABLE IF EXISTS `PUBLISHING`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PUBLISHING` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PUBLISHING`
+--
+
+LOCK TABLES `PUBLISHING` WRITE;
+/*!40000 ALTER TABLE `PUBLISHING` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PUBLISHING` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ROLE`
+--
+
+DROP TABLE IF EXISTS `ROLE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ROLE` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ROLE`
+--
+
+LOCK TABLES `ROLE` WRITE;
+/*!40000 ALTER TABLE `ROLE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ROLE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SCHOLASTIC`
+--
+
+DROP TABLE IF EXISTS `SCHOLASTIC`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SCHOLASTIC` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SCHOLASTIC`
+--
+
+LOCK TABLES `SCHOLASTIC` WRITE;
+/*!40000 ALTER TABLE `SCHOLASTIC` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SCHOLASTIC` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SEMESTER`
+--
+
+DROP TABLE IF EXISTS `SEMESTER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SEMESTER` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SCHOLASTIC_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SEMESTER`
+--
+
+LOCK TABLES `SEMESTER` WRITE;
+/*!40000 ALTER TABLE `SEMESTER` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SEMESTER` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SPECIALIZTION`
+--
+
+DROP TABLE IF EXISTS `SPECIALIZTION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SPECIALIZTION` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SPECIALIZTION`
+--
+
+LOCK TABLES `SPECIALIZTION` WRITE;
+/*!40000 ALTER TABLE `SPECIALIZTION` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SPECIALIZTION` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `STUDENT`
+--
+
+DROP TABLE IF EXISTS `STUDENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STUDENT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `ACCOUNT_ID` int(11) DEFAULT NULL,
+  `CLASS_ID` int(11) DEFAULT NULL,
+  `SPECIALIZATION_ID` int(11) DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `STUDENT`
+--
+
+LOCK TABLES `STUDENT` WRITE;
+/*!40000 ALTER TABLE `STUDENT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `STUDENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `STUDENT_SCHEDULE`
+--
+
+DROP TABLE IF EXISTS `STUDENT_SCHEDULE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STUDENT_SCHEDULE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `STUDENT_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `STUDENT_SCHEDULE`
+--
+
+LOCK TABLES `STUDENT_SCHEDULE` WRITE;
+/*!40000 ALTER TABLE `STUDENT_SCHEDULE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `STUDENT_SCHEDULE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SUBJECT`
+--
+
+DROP TABLE IF EXISTS `SUBJECT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SUBJECT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `COURSE_ID` int(11) DEFAULT NULL,
+  `SUBJECT_COMMON_ID` int(11) DEFAULT NULL,
+  `LEARNING_SESSION_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SUBJECT`
+--
+
+LOCK TABLES `SUBJECT` WRITE;
+/*!40000 ALTER TABLE `SUBJECT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SUBJECT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SUBJECT_COMMON`
+--
+
+DROP TABLE IF EXISTS `SUBJECT_COMMON`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SUBJECT_COMMON` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SUBJECT_COMMON`
+--
+
+LOCK TABLES `SUBJECT_COMMON` WRITE;
+/*!40000 ALTER TABLE `SUBJECT_COMMON` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SUBJECT_COMMON` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SUBJECT_STUDENT_SCHEDULE`
+--
+
+DROP TABLE IF EXISTS `SUBJECT_STUDENT_SCHEDULE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SUBJECT_STUDENT_SCHEDULE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `STUDENT_SCHEDULE_ID` int(11) DEFAULT NULL,
+  `CONSPECTUS_ID` int(11) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SUBJECT_STUDENT_SCHEDULE`
+--
+
+LOCK TABLES `SUBJECT_STUDENT_SCHEDULE` WRITE;
+/*!40000 ALTER TABLE `SUBJECT_STUDENT_SCHEDULE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SUBJECT_STUDENT_SCHEDULE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UNIVERSITY`
+--
+
+DROP TABLE IF EXISTS `UNIVERSITY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UNIVERSITY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `NAME_ABBR` varchar(255) DEFAULT NULL,
+  `ADDRESS_1` varchar(255) DEFAULT NULL,
+  `ADDRESS_2` varchar(255) DEFAULT NULL,
+  `ADDRESS_3` varchar(255) DEFAULT NULL,
+  `HIDDEN` tinyint(1) DEFAULT NULL,
+  `CITY` int(11) DEFAULT NULL,
+  `founding` date DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UNIVERSITY`
+--
+
+LOCK TABLES `UNIVERSITY` WRITE;
+/*!40000 ALTER TABLE `UNIVERSITY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `UNIVERSITY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `U_LASS`
+--
+
+DROP TABLE IF EXISTS `U_LASS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `U_LASS` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UNIVERSITY_ID` int(11) DEFAULT NULL,
+  `NAME` varchar(255) DEFAULT NULL,
+  `HIDDEN` tinyint(1) DEFAULT NULL,
+  `LAST_UPDATED_BY` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `UPDATE_TIME` datetime DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `U_LASS`
+--
+
+LOCK TABLES `U_LASS` WRITE;
+/*!40000 ALTER TABLE `U_LASS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `U_LASS` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-02-15 17:33:59
