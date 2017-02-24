@@ -85,9 +85,7 @@ public class MenuService extends BaseService {
             List<Menu> menuRoots = new ArrayList<Menu>();
 
             for (Menu menu : allMenus) {
-                if(menu.getChildren()==null){
-                    menu.setChildren(new HashSet<Menu>());
-                }
+                menu.setChildren(new HashSet<Menu>());
                 if (menu.getParent() != null) {
                     continue;
                 }
@@ -146,6 +144,16 @@ public class MenuService extends BaseService {
             throw e;
         } finally {
             dao.closeCurrentSession();
+        }
+    }
+    public void delete(Long[] ids) throws Exception {
+        try {
+            dao.openCurrentSessionWithTransaction();
+            dao.delete(ids);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            dao.closeCurrentSessionWithTransaction();
         }
     }
 }

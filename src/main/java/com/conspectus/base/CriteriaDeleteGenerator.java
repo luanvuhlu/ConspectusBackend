@@ -1,22 +1,22 @@
-package com.conspectus.dao;
+package com.conspectus.base;
 
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 
 /**
  * Created by luan vu on 2/11/2017.
  */
-public class CriteriaUpdateGenerator<T> {
+public class CriteriaDeleteGenerator<T> {
     private CriteriaBuilder builder;
-    private CriteriaUpdate<T> criteria;
+    private CriteriaDelete<T> criteria;
     private Root<T> root;
-    public CriteriaUpdateGenerator(Session session, Class<T> val){
+    public CriteriaDeleteGenerator(Session session, Class<T> val){
         builder = session.getCriteriaBuilder();
-        criteria = builder.createCriteriaUpdate(val);
+        criteria = builder.createCriteriaDelete(val);
         root = criteria.from(val);
     }
 
@@ -24,7 +24,7 @@ public class CriteriaUpdateGenerator<T> {
         return builder;
     }
 
-    public CriteriaUpdate<T> getCriteria() {
+    public CriteriaDelete<T> getCriteria() {
         return criteria;
     }
 

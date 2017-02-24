@@ -24,6 +24,18 @@ public class Menu implements Serializable{
     public Menu() {
     }
 
+    public Menu(Long id) {
+        this.id = id;
+    }
+
+    public Menu(String name, String url, int order, Menu parent, String icon) {
+        this.name = name;
+        this.url = url;
+        this.order = order;
+        this.parent = parent;
+        this.icon = icon;
+    }
+
     public Menu(Menu other) {
         this.id = other.getId();
         this.icon = other.getIcon();
@@ -69,7 +81,7 @@ public class Menu implements Serializable{
         this.order = order;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ROOT_ID", nullable = true)
     public Menu getParent() {
         return parent;
@@ -88,8 +100,6 @@ public class Menu implements Serializable{
     }
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-
-    @Fetch(FetchMode.JOIN)
     public Set<Menu> getChildren() {
         return children;
     }

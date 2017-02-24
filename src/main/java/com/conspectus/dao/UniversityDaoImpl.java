@@ -1,6 +1,7 @@
 package com.conspectus.dao;
 
 import com.conspectus.base.BaseDao;
+import com.conspectus.base.CriteriaQueryGenerator;
 import com.conspectus.entity.University;
 import com.conspectus.entity.University_;
 
