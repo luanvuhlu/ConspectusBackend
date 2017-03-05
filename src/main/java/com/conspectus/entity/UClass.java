@@ -1,10 +1,11 @@
 package com.conspectus.entity;
 
+import com.conspectus.entity.base.BaseEntity;
 import com.conspectus.entity.base.HiddenProperty;
-import com.conspectus.entity.base.IEntity;
+import com.conspectus.hibernate.type.NullBoolean;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by luan vu on 1/25/2017.
@@ -12,18 +13,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "U_LASS")
-public class UClass implements HiddenProperty, IEntity {
+public class UClass extends BaseEntity implements HiddenProperty {
     private Long id;
     private String name;
     private boolean hidden;
     private University university;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -40,6 +37,8 @@ public class UClass implements HiddenProperty, IEntity {
         this.name = name;
     }
 
+    @Column(name = "HIDDEN")
+    @Type(type = NullBoolean.NAME)
     public boolean isHidden() {
         return hidden;
     }
@@ -58,39 +57,4 @@ public class UClass implements HiddenProperty, IEntity {
         this.university = university;
     }
 
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

@@ -1,25 +1,27 @@
 package com.conspectus.entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.conspectus.entity.base.BaseEntity;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 2/1/2017.
  */
 @Entity
 @Table(name = "MENU")
-public class Menu implements Serializable{
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY, region = "menu")
+public class Menu  extends BaseEntity{
     private Long id;
     private String name;
     private String url;
     private int order;
     private Menu parent;
     private String icon;
-    private Set<Menu> children;
+    private List<Menu> children;
 
     public Menu() {
     }
@@ -81,7 +83,7 @@ public class Menu implements Serializable{
         this.order = order;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOT_ID", nullable = true)
     public Menu getParent() {
         return parent;
@@ -100,7 +102,7 @@ public class Menu implements Serializable{
     }
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    public Set<Menu> getChildren() {
+    public List<Menu> getChildren() {
         return children;
     }
 
@@ -108,7 +110,7 @@ public class Menu implements Serializable{
         getChildren().add(menu);
     }
 
-    public void setChildren(Set<Menu> children) {
+    public void setChildren(List<Menu> children) {
         this.children = children;
     }
 
@@ -118,5 +120,14 @@ public class Menu implements Serializable{
     @Transient
     public Integer getParentOrder(){
         return getParent()==null ? null : getParent().getOrder();
+    }
+
+    @Override
+    public String toString() {
+        return "[ " + this.getClass() + " { ID : " + getId()+
+                ", name: " + getName() +
+                ", order: " + getOrder() +
+                ", url: " + getUrl() +
+                ", audit_time: " + getAuditData() + "}]";
     }
 }

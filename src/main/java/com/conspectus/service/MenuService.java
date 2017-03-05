@@ -1,13 +1,13 @@
 package com.conspectus.service;
 
-import com.conspectus.dao.MenuDaoImpl;
 import com.conspectus.dao.MenuDaoInterface;
+import com.conspectus.dao.impl.MenuDaoImpl;
 import com.conspectus.entity.Menu;
 import com.conspectus.entity.MenuIcon;
+import com.conspectus.service.base.BaseService;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -75,7 +75,7 @@ public class MenuService extends BaseService {
             dao.closeCurrentSession();
         }
     }
-    // TODO don't want load eager
+
     public List<Menu> listMenuOrdered() throws Exception {
         try {
             List<Menu> allMenus = listAll();
@@ -85,7 +85,7 @@ public class MenuService extends BaseService {
             List<Menu> menuRoots = new ArrayList<Menu>();
 
             for (Menu menu : allMenus) {
-                menu.setChildren(new HashSet<Menu>());
+                menu.setChildren(Collections.EMPTY_LIST);
                 if (menu.getParent() != null) {
                     continue;
                 }
@@ -155,5 +155,9 @@ public class MenuService extends BaseService {
         } finally {
             dao.closeCurrentSessionWithTransaction();
         }
+    }
+
+    public MenuDaoInterface getDao() {
+        return dao;
     }
 }

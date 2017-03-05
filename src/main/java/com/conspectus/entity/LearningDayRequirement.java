@@ -1,25 +1,20 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.IEntity;
+import com.conspectus.entity.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by luan vu on 2/5/2017.
  */
 @Entity
 @Table(name = "LEARNING_DAY_REQUIREMNT")
-public class LearningDayRequirement implements IEntity {
+public class LearningDayRequirement extends BaseEntity {
     private Long id;
     private LearningDay learningDay;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -36,41 +31,5 @@ public class LearningDayRequirement implements IEntity {
 
     public void setLearningDay(LearningDay learningDay) {
         this.learningDay = learningDay;
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

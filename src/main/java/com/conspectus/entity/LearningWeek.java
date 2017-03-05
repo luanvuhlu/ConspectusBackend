@@ -1,30 +1,25 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.IEntity;
+import com.conspectus.entity.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 2/5/2017.
  */
 @Entity
 @Table(name = "LEARNING_WEEK")
-public class LearningWeek implements IEntity{
+public class LearningWeek extends BaseEntity{
     private Long id;
     private LearningSession learningSession;
-    private Set<ConspectusLearningWeek> conspectusLearningWeeks;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
+    private List<ConspectusLearningWeek> conspectusLearningWeeks;
 
     public LearningWeek() {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -44,47 +39,11 @@ public class LearningWeek implements IEntity{
     }
 
     @OneToMany(mappedBy = "learningWeek")
-    public Set<ConspectusLearningWeek> getConspectusLearningWeeks() {
+    public List<ConspectusLearningWeek> getConspectusLearningWeeks() {
         return conspectusLearningWeeks;
     }
 
-    public void setConspectusLearningWeeks(Set<ConspectusLearningWeek> conspectusLearningWeeks) {
+    public void setConspectusLearningWeeks(List<ConspectusLearningWeek> conspectusLearningWeeks) {
         this.conspectusLearningWeeks = conspectusLearningWeeks;
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

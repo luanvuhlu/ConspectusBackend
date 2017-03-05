@@ -1,19 +1,20 @@
 package com.conspectus.service;
 
-import com.conspectus.dao.UniversityDaoImpl;
 import com.conspectus.dao.UniversityDaoInterface;
+import com.conspectus.dao.impl.UniversityDaoImpl;
 import com.conspectus.entity.University;
+import com.conspectus.service.base.BaseService;
 
 /**
  * Created by luan vu on 1/25/2017.
  */
-public class UniversityService extends BaseService{
+public class UniversityService extends BaseService {
     private UniversityDaoInterface dao;
     public UniversityService(){
         dao = new UniversityDaoImpl();
     }
 
-    public void persist(University entity) throws Exception {
+    public void add(University entity) throws Exception {
         try {
             dao.openCurrentSessionWithTransaction();
             dao.add(entity);

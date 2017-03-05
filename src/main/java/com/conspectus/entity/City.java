@@ -1,7 +1,7 @@
 package com.conspectus.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 1/25/2017.
@@ -11,10 +11,10 @@ import java.util.Set;
 public class City {
     private Integer id;
     private String name;
-    private Set<University> universities;
-    private Set<Account> accounts;
+    private List<University> universities;
+    private List<User> accounts;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -32,20 +32,20 @@ public class City {
     }
 
     @OneToMany(mappedBy = "city")
-    public Set<University> getUniversities() {
+    public List<University> getUniversities() {
         return universities;
     }
 
-    public void setUniversities(Set<University> universities) {
+    public void setUniversities(List<University> universities) {
         this.universities = universities;
     }
 
     @OneToMany(mappedBy = "city")
-    public Set<Account> getAccounts() {
+    public List<User> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<Account> accounts) {
+    public void setAccounts(List<User> accounts) {
         this.accounts = accounts;
     }
 }

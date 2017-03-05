@@ -1,10 +1,17 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.*;
+import com.conspectus.entity.base.AddressProperty;
+import com.conspectus.entity.base.BaseEntity;
+import com.conspectus.entity.base.HiddenProperty;
+import com.conspectus.entity.base.NameProperty;
+import com.conspectus.hibernate.type.NullBoolean;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 1/25/2017.
@@ -12,7 +19,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "UNIVERSITY")
-public class University implements NameProperty, AddressProperty, HiddenProperty, IEntity {
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "university")
+public class University extends BaseEntity implements NameProperty, AddressProperty, HiddenProperty {
     private Long id;
     private String name;
     private String nameAbbr;
@@ -22,16 +30,12 @@ public class University implements NameProperty, AddressProperty, HiddenProperty
     private boolean hidden;
     private City city;
     private Date founding;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
-    private Set<UClass> uClasses;
-    private Set<Office> offices;
-    private Set<Department> departments;
+    private List<UClass> uClasses;
+    private List<Office> offices;
+    private List<Department> departments;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -102,6 +106,8 @@ public class University implements NameProperty, AddressProperty, HiddenProperty
         this.founding = founding;
     }
 
+    @Column(name = "HIDDEN")
+    @Type(type = NullBoolean.NAME)
     public boolean isHidden() {
         return hidden;
     }
@@ -111,20 +117,20 @@ public class University implements NameProperty, AddressProperty, HiddenProperty
     }
 
     @OneToMany(mappedBy = "university")
-    public Set<UClass> getuClasses() {
+    public List<UClass> getuClasses() {
         return uClasses;
     }
 
-    public void setuClasses(Set<UClass> uClasses) {
+    public void setuClasses(List<UClass> uClasses) {
         this.uClasses = uClasses;
     }
 
     @OneToMany(mappedBy = "university")
-    public Set<Office> getOffices() {
+    public List<Office> getOffices() {
         return offices;
     }
 
-    public void setOffices(Set<Office> offices) {
+    public void setOffices(List<Office> offices) {
         this.offices = offices;
     }
 
@@ -145,11 +151,11 @@ public class University implements NameProperty, AddressProperty, HiddenProperty
     }
 
     @OneToMany(mappedBy = "university")
-    public Set<Department> getDepartments() {
+    public List<Department> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Set<Department> departments) {
+    public void setDepartments(List<Department> departments) {
         this.departments = departments;
     }
 
@@ -159,41 +165,5 @@ public class University implements NameProperty, AddressProperty, HiddenProperty
 
     public void removeDepartment(Department department) {
         getDepartments().remove(department);
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

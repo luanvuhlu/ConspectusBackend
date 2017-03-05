@@ -1,16 +1,15 @@
-package com.conspectus.dao;
+package com.conspectus.dao.impl;
 
 import com.conspectus.base.BaseDao;
-import com.conspectus.base.CriteriaDeleteGenerator;
 import com.conspectus.base.CriteriaQueryGenerator;
 import com.conspectus.base.CriteriaUpdateGenerator;
+import com.conspectus.dao.MenuDaoInterface;
 import com.conspectus.entity.Menu;
 import com.conspectus.entity.MenuIcon;
 import com.conspectus.entity.Menu_;
-import org.hibernate.Criteria;
+import com.conspectus.hibernate.base.Builder;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
@@ -19,6 +18,9 @@ import java.util.List;
  * Created by luan vu on 1/25/2017.
  */
 public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
+
+    public static final String CACHE_REGION = "memnu";
+
     public void add(Menu entity) {
         getCurrentSession().save(entity);
     }
@@ -29,26 +31,52 @@ public class MenuDaoImpl extends BaseDao implements MenuDaoInterface {
 
     public Menu findById(Long id) {
         CriteriaQueryGenerator<Menu, Menu> generator = getCriteriaQueryGenerator(Menu.class, Menu.class);
-        generator.getCriteria().select(generator.getRoot());
-        generator.getCriteria().where(generator.getBuilder().equal(generator.getRoot().get(Menu_.id), id));
-        return getCurrentSession().createQuery(generator.getCriteria()).uniqueResult();
+        CriteriaBuilder builder = generator.getBuilder();
+        Root<Menu> root = generator.getRoot();
+        generator.getCriteria().select(root);
+        generator.getCriteria()
+                .where(builder.and(
+                        builder.equal(root.get(Menu_.id), id),
+                        Builder.isNotDeleted(builder, root)
+                     )
+                );
+        return getCurrentSession()
+                .createQuery(generator.getCriteria())
+                .uniqueResult();
     }
 
     public void delete(Menu entity) {
-        getCurrentSession().delete(entity);
+        entity.setDeleted(true);
+        update(entity);
     }
 
     public void delete(Long[] ids) {
-        CriteriaDeleteGenerator<Menu> generator = getCriteriaDeleteGenerator(Menu.class);
-        generator.getCriteria().where(generator.getRoot().get(Menu_.id).in(ids));
+        CriteriaUpdateGenerator<Menu> generator = getCriteriaUpdateGenerator(Menu.class);
+        generator.getCriteria()
+                .set(Menu_.deleted, true);
+        generator.getCriteria().where(
+                generator.getBuilder().and(
+                        generator.getRoot().get(Menu_.id).in(ids),
+                        generator.getRoot().get(Menu_.parent).get(Menu_.id).in(ids)
+                )
+        );
         getCurrentSession().createQuery(generator.getCriteria()).executeUpdate();
     }
 
     public List<Menu> listAll() {
         CriteriaQueryGenerator<Menu, Menu> generator = getCriteriaQueryGenerator(Menu.class, Menu.class);
-        generator.getCriteria().select(generator.getRoot());
-        generator.getCriteria().orderBy(generator.getBuilder().asc(generator.getRoot().get(Menu_.order)));
-        return getCurrentSession().createQuery(generator.getCriteria()).list();
+        generator.getCriteria()
+                .select(generator.getRoot())
+                .where(Builder.isNotDeleted(generator.getBuilder(), generator.getRoot()))
+                .orderBy(
+                        generator.getBuilder().asc(generator.getRoot().get(Menu_.parent).get(Menu_.id)),
+                        generator.getBuilder().asc(generator.getRoot().get(Menu_.order))
+                        );
+        return getCurrentSession()
+                .createQuery(generator.getCriteria())
+                .setCacheable(true)
+                .setCacheRegion(CACHE_REGION)
+                .list();
     }
 
     private void reOrderMenu(Integer parentId, int order, int value) {

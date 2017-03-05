@@ -1,71 +1,30 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.IEntity;
+import com.conspectus.entity.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 2/5/2017.
  */
 @Entity
 @Table(name = "SUBJECT")
-public class Subject implements IEntity {
+public class Subject extends BaseEntity {
     private Long id;
     private Course course;
     private SubjectCommon subjectCommon;
     private LearningSession learningSession;
-    private Set<Conspectus> conspectuses;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
+    private List<Conspectus> conspectuses;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     @JoinColumn(name = "COURSE_ID", nullable = false)
@@ -99,11 +58,11 @@ public class Subject implements IEntity {
     }
 
     @OneToMany(mappedBy = "subject")
-    public Set<Conspectus> getConspectuses() {
+    public List<Conspectus> getConspectuses() {
         return conspectuses;
     }
 
-    public void setConspectuses(Set<Conspectus> conspectuses) {
+    public void setConspectuses(List<Conspectus> conspectuses) {
         this.conspectuses = conspectuses;
     }
 }

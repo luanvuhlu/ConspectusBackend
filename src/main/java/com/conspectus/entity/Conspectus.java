@@ -1,32 +1,27 @@
 package com.conspectus.entity;
 
-import com.conspectus.entity.base.IEntity;
+import com.conspectus.entity.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by luan vu on 2/5/2017.
  */
 @Entity
 @Table(name = "CONSPECTUS")
-public class Conspectus implements IEntity {
+public class Conspectus extends BaseEntity {
     private Long id;
-    private Set<Problem> problems;
-    private Set<Awareness> awarenesses;
-    private Set<ConspectusLearningWeek> conspectusLearningWeeks;
-    private Set<Exercise> exercises;
+    private List<Problem> problems;
+    private List<Awareness> awarenesses;
+    private List<ConspectusLearningWeek> conspectusLearningWeeks;
+    private List<Exercise> exercises;
     private SubjectStudentSchedule subjectStudentSchedule;
     private Subject subject;
     private LearningSession learningSession;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -36,38 +31,38 @@ public class Conspectus implements IEntity {
     }
 
     @OneToMany(mappedBy = "conspectus")
-    public Set<Problem> getProblems() {
+    public List<Problem> getProblems() {
         return problems;
     }
 
-    public void setProblems(Set<Problem> problems) {
+    public void setProblems(List<Problem> problems) {
         this.problems = problems;
     }
 
     @OneToMany(mappedBy = "conspectus")
-    public Set<Awareness> getAwarenesses() {
+    public List<Awareness> getAwarenesses() {
         return awarenesses;
     }
 
-    public void setAwarenesses(Set<Awareness> awarenesses) {
+    public void setAwarenesses(List<Awareness> awarenesses) {
         this.awarenesses = awarenesses;
     }
 
     @OneToMany(mappedBy = "conspectus")
-    public Set<ConspectusLearningWeek> getConspectusLearningWeeks() {
+    public List<ConspectusLearningWeek> getConspectusLearningWeeks() {
         return conspectusLearningWeeks;
     }
 
-    public void setConspectusLearningWeeks(Set<ConspectusLearningWeek> conspectusLearningWeeks) {
+    public void setConspectusLearningWeeks(List<ConspectusLearningWeek> conspectusLearningWeeks) {
         this.conspectusLearningWeeks = conspectusLearningWeeks;
     }
 
     @OneToMany(mappedBy = "conspectus")
-    public Set<Exercise> getExercises() {
+    public List<Exercise> getExercises() {
         return exercises;
     }
 
-    public void setExercises(Set<Exercise> exercises) {
+    public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 
@@ -99,41 +94,5 @@ public class Conspectus implements IEntity {
 
     public void setLearningSession(LearningSession learningSession) {
         this.learningSession = learningSession;
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

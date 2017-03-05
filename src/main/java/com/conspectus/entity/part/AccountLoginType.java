@@ -1,4 +1,4 @@
-package com.conspectus.entity;
+package com.conspectus.entity.part;
 
 /**
  * Created by luan vu on 1/30/2017.

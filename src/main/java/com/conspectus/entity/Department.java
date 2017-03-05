@@ -1,11 +1,14 @@
 package com.conspectus.entity;
 
+import com.conspectus.entity.base.BaseEntity;
 import com.conspectus.entity.base.HiddenProperty;
-import com.conspectus.entity.base.IEntity;
 import com.conspectus.entity.base.NameProperty;
+import com.conspectus.hibernate.type.NullBoolean;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by luan vu on 1/30/2017.
@@ -13,20 +16,19 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "DEPARTMENT")
-public class Department implements NameProperty, HiddenProperty, IEntity {
+@TypeDefs({
+        @TypeDef(name = NullBoolean.NAME, typeClass = NullBoolean.class)
+})
+public class Department extends BaseEntity implements NameProperty, HiddenProperty {
     private Long id;
     private University university;
     private String name;
     private String nameAbbr;
     private String address;
     private boolean hidden;
-    private Account lastUpdatedBy;
-    private boolean deleted;
-    private Date createTime;
-    private Date updateTime;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -70,47 +72,13 @@ public class Department implements NameProperty, HiddenProperty, IEntity {
         this.address = address;
     }
 
+    @Column(name = "HIDDEN")
+    @Type(type = NullBoolean.NAME)
     public boolean isHidden() {
         return hidden;
     }
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
-    }
-
-    @JoinColumn(name = "LAST_UPDATED_BY", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Account getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(Account lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Column(name = "UPDATE_TIME")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }
